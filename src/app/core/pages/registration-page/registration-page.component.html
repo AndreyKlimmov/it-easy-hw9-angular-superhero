@@ -56,13 +56,16 @@
         <!--        </button>-->
       </mat-form-field>
     </div>
+
 <!--    <p *ngIf="registrationForm.hasError('error')">-->
 <!--      {{ registrationForm.getError('error') }}-->
 <!--    </p>-->
+
     <button mat-raised-button
             color="primary"
             [disabled]="!registrationForm.valid"
             (click)="registration()"
-    >Create new account</button>
+    >Create new account
+    </button>
   </div>
 </div>

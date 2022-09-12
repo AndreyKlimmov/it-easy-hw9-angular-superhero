@@ -1,19 +1,19 @@
 <div class="login">
-  <div class="login-nav">
-    <p class="login-nav__title">Are you not registered?</p>
-    <button mat-raised-button
-            color="primary"
-            [routerLink]="'/registration'"
-    >Registration</button>
-  </div>
+<!--  <div class="login-nav">-->
+<!--    <p class="login-nav__title">Are you not registered?</p>-->
+<!--    <button mat-raised-button-->
+<!--            color="primary"-->
+<!--            [routerLink]="'/registration'"-->
+<!--    >Registration</button>-->
+<!--  </div>-->
 
   <div class="login-form">
-
+    <h2>Sign In</h2>
     <div class="login-form-control">
       <p class="login-form-control__label">Email</p>
 
       <mat-form-field class="example-form-field" appearance="fill">
-        <mat-label>Clearable input</mat-label>
+<!--        <mat-label>Clearable input</mat-label>-->
         <input matInput type="text" [formControl]="loginForm.get('email') | getControl">
         <!--        <button *ngIf="emailControl.value" matSuffix mat-icon-button aria-label="Clear"-->
         <!--                (click)="emailControl.reset('')">-->
@@ -25,7 +25,7 @@
       <p class="login-form-control__label">Password</p>
 
       <mat-form-field class="example-form-field" appearance="fill">
-        <mat-label>Clearable input</mat-label>
+<!--        <mat-label>Clearable input</mat-label>-->
         <input matInput type="text" [formControl]="loginForm.get('password') | getControl">
         <!--        <button *ngIf="passwordControl.value" matSuffix mat-icon-button aria-label="Clear"-->
         <!--                (click)="passwordControl.reset('')">-->
@@ -33,11 +33,18 @@
         <!--        </button>-->
       </mat-form-field>
     </div>
+    <div class="login-form-warning">
+      <p *ngIf="noSuchUser">
+        {{ noUserMessage}}
+      </p>
+    </div>
 
-    <button mat-raised-button
+
+    <button class="login-form__btn" mat-raised-button
             color="primary"
             [disabled]="!loginForm.valid"
             (click)="login()"
-    >login</button>
+    >Login
+    </button>
   </div>
 </div>
