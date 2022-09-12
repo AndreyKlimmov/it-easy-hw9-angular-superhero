@@ -1,32 +1,31 @@
 <div class="registration">
-  <div class="registration-nav">
-    <p class="registration-nav__title">Already registered?</p>
-    <button mat-raised-button
-            color="primary"
-            [routerLink]="'/login'"
-    >Log in</button>
-  </div>
+<!--  <div class="registration-nav">-->
+<!--    <p class="registration-nav__title">Already registered?</p>-->
+<!--    <button mat-raised-button-->
+<!--            color="primary"-->
+<!--            [routerLink]="'/login'"-->
+<!--    >Log in</button>-->
+<!--  </div>-->
 
   <div class="registration-form">
-
+    <h2>Registration</h2>
     <div class="registration-form-control">
       <p class="registration-form-control__label">Email</p>
-
-      <mat-form-field class="example-form-field" appearance="fill">
-        <mat-label>Clearable input</mat-label>
-        <input matInput type="text" [formControl]="registrationForm.get('email') | getControl">
-<!--        <button *ngIf="emailControl.value" matSuffix mat-icon-button aria-label="Clear"-->
-<!--                (click)="emailControl.reset('')">-->
-<!--          <mat-icon>close</mat-icon>-->
-<!--        </button>-->
-      </mat-form-field>
+        <mat-form-field  class="example-form-field" appearance="fill">
+          <!--        <mat-label>email</mat-label>-->
+          <input matInput [ngClass]="getClassEmail('email')" type="text" [formControl]="registrationForm.get('email') | getControl">
+          <!--        <button *ngIf="emailControl.value" matSuffix mat-icon-button aria-label="Clear"-->
+          <!--                (click)="emailControl.reset('')">-->
+          <!--          <mat-icon>close</mat-icon>-->
+          <!--        </button>-->
+        </mat-form-field>
     </div>
     <div class="registration-form-control">
       <p class="registration-form-control__label">Password</p>
 
       <mat-form-field class="example-form-field" appearance="fill">
-        <mat-label>Clearable input</mat-label>
-        <input matInput type="text" [formControl]="registrationForm.get('password') | getControl">
+<!--        <mat-label>password</mat-label>-->
+        <input matInput [ngClass]="getClassEmail('password')" type="text" [formControl]="registrationForm.get('password') | getControl">
 <!--        <button *ngIf="passwordControl.value" matSuffix mat-icon-button aria-label="Clear"-->
 <!--                (click)="passwordControl.reset('')">-->
 <!--          <mat-icon>close</mat-icon>-->
@@ -37,21 +36,33 @@
       <p class="registration-form-control__label">Confirm Password</p>
 
       <mat-form-field class="example-form-field" appearance="fill">
-        <mat-label>Clearable input</mat-label>
-        <input matInput type="text" [formControl]="registrationForm.get('confirmPassword') | getControl">
+<!--        <mat-label>repeat password</mat-label>-->
+        <input matInput [ngClass]="getClassEmail('confirmPassword')" type="text" [formControl]="registrationForm.get('confirmPassword') | getControl">
 <!--        <button *ngIf="confirmPasswordControl.value" matSuffix mat-icon-button aria-label="Clear"-->
 <!--                (click)="confirmPasswordControl.reset('')">-->
 <!--          <mat-icon>close</mat-icon>-->
 <!--        </button>-->
       </mat-form-field>
     </div>
-    <p *ngIf="registrationForm.hasError('error')">
-      {{ registrationForm.getError('error') }}
-    </p>
+    <div class="registration-form-control">
+      <p class="registration-form-control__label">Name</p>
+
+      <mat-form-field class="example-form-field" appearance="fill">
+<!--        <mat-label>name</mat-label>-->
+        <input matInput [ngClass]="getClassEmail('name')" type="text" [formControl]="registrationForm.get('name') | getControl">
+        <!--        <button *ngIf="emailControl.value" matSuffix mat-icon-button aria-label="Clear"-->
+        <!--                (click)="emailControl.reset('')">-->
+        <!--          <mat-icon>close</mat-icon>-->
+        <!--        </button>-->
+      </mat-form-field>
+    </div>
+<!--    <p *ngIf="registrationForm.hasError('error')">-->
+<!--      {{ registrationForm.getError('error') }}-->
+<!--    </p>-->
     <button mat-raised-button
             color="primary"
             [disabled]="!registrationForm.valid"
             (click)="registration()"
-    >Registration</button>
+    >Create new account</button>
   </div>
 </div>

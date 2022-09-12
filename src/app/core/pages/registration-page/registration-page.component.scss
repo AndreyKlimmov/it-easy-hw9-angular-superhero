@@ -1,5 +1,9 @@
 .registration {
   padding-top: 100px;
+  //height: 875px;
+  //background: url("./../../../../assets/img/registr.png");
+  //background-size: 100% 100%;
+
   &-nav {
     display: flex;
     align-items: center;
@@ -13,12 +17,23 @@
     }
   }
   &-form {
+    width: 350px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    //align-items: center;
+    justify-content: left;
+
+    & h2 {
+      margin: 0 auto 20px auto;
+      color: blueviolet;
+    }
 
     &-control {
+      display: flex;
+      //flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
       &__label {
         font-size: 16px;
         font-weight: 700;
@@ -26,4 +41,8 @@
       }
     }
   }
+}
+.invalid {
+  //border: 1px solid red;
+  box-shadow: 0px 0px 2px 3px rgba(255, 0, 0, 0.5);
 }
