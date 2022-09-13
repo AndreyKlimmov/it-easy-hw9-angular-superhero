@@ -31,9 +31,9 @@ export class RegistrationPageComponent implements OnInit {
     this.initializeForm()
     //const test: any = this.registrationForm.controls['email']['status']
     //this.emailControl.valueChanges.subscribe(console.log)
-    this.registrationForm.valueChanges.subscribe(() =>
-    {console.log('reg form:', this.registrationForm, 'status:',
-      )})
+    // this.registrationForm.valueChanges.subscribe(() =>
+    // {console.log('reg form:', this.registrationForm, 'status:',
+    //   )})
   }
 
   public registration(): any {

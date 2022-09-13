@@ -1,2 +1,46 @@
-<p>home-page works!</p>
-<p>User: {{authUser.email}}</p>
+<!--<p>home-page works!</p>-->
+<!--<p>User: {{authUser.email}}</p>-->
+<div class="home">
+  <div class="home-header">
+    <img (click)="navToPage('home')" src="assets/img/logo-hero.svg" alt="logo" class="home-header__img">
+    <button
+      mat-button
+      class="home-header__btn"
+      (click)="navToPage('battle')"
+    >Battle
+    </button>
+    <button
+      mat-button
+      class="home-header__btn"
+      (click)="navToPage('user')"
+    >{{ authUser[0].name || 'User' }}
+    </button>
+  </div>
+
+  <div class="home-form">
+    <div class="home-form__keyboard" [ngClass]="keyboardHide">
+      <button
+        mat-button
+        *ngFor="let letter of alphabet"
+        class="home-form__btn"
+        (click)="getLetter(letter)"
+      >{{ letter }}
+      </button>
+    </div>
+    <button
+      mat-button
+      class="home-form__btn"
+      [ngClass]="highLightBtn"
+      (click)="showKeys()"
+    >{{ pressedLetter || 'A' }}
+    </button>
+
+    <mat-form-field class="home-form-full-width" appearance="fill">
+      <mat-label>Hero name</mat-label>
+
+      <input type="text" matInput placeholder="super" [ngClass]="getClassSearch('search')" [formControl]="searchForm.get('search') | getControl">
+      <mat-icon matSuffix class="home-form-full-width__search">search</mat-icon>
+    </mat-form-field>
+  </div>
+
+</div>

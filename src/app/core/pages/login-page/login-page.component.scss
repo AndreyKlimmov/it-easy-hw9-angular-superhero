@@ -47,7 +47,7 @@
   }
   &-form {
     width: 310px;
-    height: 265px;
+    height: 290px;
     padding: 15px;
     margin: 0 auto;
     display: flex;
@@ -73,13 +73,21 @@
       }
     }
     &-warning {
-      height: 20px;
-      display: inline-block;
+      min-height: 20px;
+      display: block;
       //border: 1px solid;
       margin-bottom: 10px;
     }
     &__btn {
 
+    }
+    &__link {
+      margin-top: 12px;
+      text-align: right;
+      font-size: 13px;
+      font-weight: 400;
+      color: blueviolet;
+      cursor: pointer;
     }
   }
 }
