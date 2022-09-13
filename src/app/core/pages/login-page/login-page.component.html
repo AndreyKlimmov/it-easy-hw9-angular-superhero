@@ -6,6 +6,21 @@
 <!--            [routerLink]="'/registration'"-->
 <!--    >Registration</button>-->
 <!--  </div>-->
+  <div class="login-header">
+    <img (click)="navToPage('login')" src="assets/img/logo-hero.svg" alt="logo" class="login-header__img">
+    <button style="visibility: hidden"
+            mat-button
+            class="login-header__btn"
+            (click)="navToPage('battle')"
+    >Battle
+    </button>
+    <button
+      mat-button
+      class="login-header__btn"
+      (click)="navToPage('registration')"
+    >Registration
+    </button>
+  </div>
 
   <div class="login-form">
     <h2>Sign In</h2>
@@ -46,9 +61,9 @@
             (click)="login()"
     >Login
     </button>
-    <p class="login-form__link"
-      (click)="routerNavigate()"
-    >or Create account
-    </p>
+<!--    <p class="login-form__link"-->
+<!--      (click)="routerNavigate()"-->
+<!--    >or Create account-->
+<!--    </p>-->
   </div>
 </div>

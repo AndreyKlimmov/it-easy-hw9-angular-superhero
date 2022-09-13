@@ -28,11 +28,29 @@
 //  }
 //}
 .login {
-  padding-top: 100px;
+  //padding-top: 100px;
   //height: 875px;
   //background: url("./../../../../assets/img/registr.png");
   //background-size: 100% 100%;
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 2px 1px 0 rgba(0, 0, 0, .1);
+    margin-bottom: 30px;
 
+    &__img {
+      width: 48px;
+      height: 48px;
+      cursor: pointer;
+    }
+
+    &__btn {
+      font-size: 16px;
+      font-weight: 500;
+      color: blueviolet;
+    }
+  }
   &-nav {
     display: flex;
     align-items: center;
@@ -47,7 +65,7 @@
   }
   &-form {
     width: 310px;
-    height: 290px;
+    //height: 290px;
     padding: 15px;
     margin: 0 auto;
     display: flex;
@@ -73,7 +91,7 @@
       }
     }
     &-warning {
-      min-height: 20px;
+      min-height: 32px;
       display: block;
       //border: 1px solid;
       margin-bottom: 10px;

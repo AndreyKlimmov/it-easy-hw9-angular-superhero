@@ -43,18 +43,19 @@ export class LoginPageComponent implements OnInit {
           //console.log('authUsers:', authUsers);
           //registeredUsers.push(payLoad)
           if (localStorage.getItem('session')) {
-            authUsers = JSON.parse(localStorage.getItem('session') || '')
+            authUsers = [JSON.parse(localStorage.getItem('session') || '')]
+            //const existedUser =
             if (authUsers.find((user: any) => user.email === payLoad.email)) {
               return this.router.navigate(['/home'])
             }
 
           }
-          authUsers.push(authUser)
-          localStorage.setItem('session', JSON.stringify(authUsers))
+          //authUsers.push(authUser)
+          localStorage.setItem('session', JSON.stringify(authUser))
           this.router.navigate(['/home'])
         }
         this.noSuchUser = true
-      }
+      } else {this.noSuchUser = true}
 
       //const registeredUsers = JSON.parse(localStorage.getItem('users') || '');
       console.log('registeredUsers:', registeredUsers);
@@ -62,8 +63,10 @@ export class LoginPageComponent implements OnInit {
 
     }
   }
-
-  public routerNavigate(): void {
-    this.router.navigate(['/registration'])
+  public navToPage(pagePath: any): void {
+    this.router.navigate(['/' + pagePath])
   }
+  // public routerNavigate(): void {
+  //   this.router.navigate(['/registration'])
+  // }
 }

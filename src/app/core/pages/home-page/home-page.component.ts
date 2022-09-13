@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-home-page',
@@ -8,23 +8,27 @@ import {FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  public authUser: any;
+  public authUser: any = {'name': 'Log in'};
   public alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
   public searchForm!: FormControl;
   public pressedLetter: string = '';
   public keyboardHide: string = 'keyboard-hide';
-  highLightBtn: any;
+  public highlightBtn: string = '';
 
   constructor(
+
     private router: Router
   ) { }
 
   ngOnInit(): void {
     this.initializeForm()
-    this.authUser = JSON.parse(localStorage.getItem('session') || '')
   }
   private initializeForm(): void {
     this.searchForm = new FormControl<any>('', [])
+    if (localStorage.getItem('session')) {
+      this.authUser = JSON.parse(localStorage.getItem('session') || '')
+    }
+    console.log(this.authUser);
   }
 
   public navToPage(pagePath: any): void {
@@ -33,11 +37,19 @@ export class HomePageComponent implements OnInit {
 
   public showKeys(): void {
     this.pressedLetter = '';
-    this.keyboardHide ? this.keyboardHide = '' : this.keyboardHide = 'keyboard-hide'
+    if (this.keyboardHide) {
+      this.keyboardHide = '';
+      this.highlightBtn = 'highlight-btn'
+    }  else {
+      this.keyboardHide = 'keyboard-hide'
+      this.highlightBtn = ''
+    }
   }
 
   public getLetter(letter: string): void {
-        this.pressedLetter = letter.toUpperCase();
+    this.pressedLetter = letter.toUpperCase();
+    this.keyboardHide = 'keyboard-hide'
+    this.highlightBtn = ''
   }
 
   public getClassSearch(search: string) {

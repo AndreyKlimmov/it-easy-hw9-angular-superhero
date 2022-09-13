@@ -58,6 +58,14 @@ export class RegistrationPageComponent implements OnInit {
         if (authUsers) {
           //console.log('authUsers:', authUsers);
           //localStorage.setItem('session', JSON.stringify(authUsers))
+          if (localStorage.getItem('session')) {
+            const loggedInUsers = [JSON.parse(localStorage.getItem('session') || '')]
+            //const existedUser =
+            if (loggedInUsers.find((user: any) => user.email === payLoad.email)) {
+              return this.router.navigate(['/home'])
+            }
+
+          }
           return this.router.navigate(['/login'])
         }
       }
@@ -98,4 +106,10 @@ export class RegistrationPageComponent implements OnInit {
     }
     return ''
   }
+  public navToPage(pagePath: any): void {
+    this.router.navigate(['/' + pagePath])
+  }
+  // public routerNavigate(): void {
+  //   this.router.navigate(['/login'])
+  // }
 }

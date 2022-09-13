@@ -1,8 +1,25 @@
 .registration {
-  padding-top: 100px;
-  //height: 875px;
-  //background: url("./../../../../assets/img/registr.png");
-  //background-size: 100% 100%;
+
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 2px 1px 0 rgba(0, 0, 0, .1);
+    margin-bottom: 30px;
+
+    &__img {
+      width: 48px;
+      height: 48px;
+      cursor: pointer;
+    }
+
+    &__btn {
+      font-size: 16px;
+      font-weight: 500;
+      color: blueviolet;
+    }
+  }
 
   &-nav {
     display: flex;
@@ -41,6 +58,14 @@
         font-weight: 700;
         color: blueviolet;
       }
+    }
+    &__link {
+      margin-top: 12px;
+      text-align: right;
+      font-size: 13px;
+      font-weight: 400;
+      color: blueviolet;
+      cursor: pointer;
     }
   }
 }
