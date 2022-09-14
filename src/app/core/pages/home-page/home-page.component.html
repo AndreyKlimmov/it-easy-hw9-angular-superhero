@@ -42,9 +42,10 @@
       <mat-form-field class="home-wrapper-form-full-width" appearance="fill">
         <mat-label>Hero name</mat-label>
 
-        <input type="text" matInput placeholder="super" [ngClass]="getClassSearch('search')" [formControl]="searchForm.get('search') | getControl">
+        <input type="text" matInput placeholder="super"
+               [formControl]="searchControl">
         <mat-icon matSuffix class="home-wrapper-form-full-width__search"
-                  (click)="getQtyHeroes()"
+                  (click)="searchHeroes()"
         >search
         </mat-icon>
       </mat-form-field>
@@ -52,11 +53,28 @@
   </div>
   <div class="home-heroes">
     <p class="home-heroes__qty"
-       *ngIf="getQtyHeroes()">
+       *ngIf="this.heroes.length">
       Found: {{ this.heroes.length }} heroes
     </p>
     <div class="home-heroes-cards">
       <div class="home-heroes-cards-card" *ngFor="let hero of heroes">
+        <div class="home-heroes-cards-card-buttons">
+          <button
+            mat-button
+            class="home-heroes-cards-card-buttons__btn"
+            (click)="navToPage('user')"
+          >Select
+          </button>
+          <div class="home-heroes-cards-card-buttons__name"
+          >{{hero.name}}
+          </div>
+          <button
+            mat-button
+            class="home-heroes-cards-card-buttons__btn"
+            (click)="navToPage('hero-details')"
+          >View info
+          </button>
+        </div>
         <img class="home-heroes-cards-card-image" [src]="hero.image.url" alt="image">
         <div class="home-heroes-cards-card-powerstats">
           <div class="home-heroes-cards-card-powerstats-item">

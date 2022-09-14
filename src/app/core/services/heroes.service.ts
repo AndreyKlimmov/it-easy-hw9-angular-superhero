@@ -14,8 +14,8 @@ export class HeroesService {
   ) {
   }
 
-  public getHeroes(): Observable<HeroesResponseInterfaces> {
-    return this.httpClient.get<HeroesResponseInterfaces>('https://www.superheroapi.com/api.php/788682412583063/search/super')
+  public getHeroes(heroName: string): Observable<HeroesResponseInterfaces> {
+    return this.httpClient.get<HeroesResponseInterfaces>(`https://www.superheroapi.com/api.php/788682412583063/search/${heroName}`)
   }
 
 }

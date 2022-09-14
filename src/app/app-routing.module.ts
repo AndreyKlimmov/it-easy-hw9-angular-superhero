@@ -13,12 +13,18 @@ const routes: Routes = [
   {
     path: 'registration',
     loadChildren: () => import('./core/pages/registration-page/registration-page.module').then(m => m.RegistrationPageModule)
-  },  {
+  },
+  {
     path: 'user',
     loadChildren: () => import('./core/pages/user-page/user-page.module').then(m => m.UserPageModule)
-  },  {
+  },
+  {
     path: 'battle',
     loadChildren: () => import('./core/pages/battle-page/battle-page.module').then(m => m.BattlePageModule)
+  },
+  {
+    path: 'hero-details',
+    loadChildren: () => import('./core/pages/hero-details-page/hero-details-page.module').then(m => m.HeroDetailsPageModule)
   },
   {
     path: '**',

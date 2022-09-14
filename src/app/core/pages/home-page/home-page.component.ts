@@ -12,11 +12,10 @@ import {HeroesResponseInterfaces} from "../../interfaces/http-interfaces";
 export class HomePageComponent implements OnInit {
   public authUser: any = {'name': 'Log in'};
   public alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
-  public searchForm!: FormControl;
+  public searchControl!: FormControl;
   public pressedLetter: string = '';
   public keyboardHide: string = 'keyboard-hide';
   public highlightBtn: string = '';
-  public qtyHeroes: number = 0;
   public heroes: any[] = [];
 
   constructor(
@@ -26,20 +25,20 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm()
-    this.getHeroes()
+    // this.getHeroes()
   }
   private initializeForm(): void {
-    this.searchForm = new FormControl<any>('', [])
+    this.searchControl = new FormControl<any>('', [])
     if (localStorage.getItem('session')) {
       this.authUser = JSON.parse(localStorage.getItem('session') || '')
     }
     console.log(this.authUser);
   }
-  private getHeroes(): void {
-     this.heroesService.getHeroes().subscribe(
-       (data: HeroesResponseInterfaces) => {
-         this.heroes = data.results})
-  }
+  // private getHeroes(): void {
+  //    this.heroesService.getHeroes().subscribe(
+  //      (data: HeroesResponseInterfaces) => {
+  //        this.heroes = data.results})
+  // }
 
   public navToPage(pagePath: any): void {
     this.router.navigate(['/' + pagePath])
@@ -60,14 +59,20 @@ export class HomePageComponent implements OnInit {
     this.pressedLetter = letter.toUpperCase();
     this.keyboardHide = 'keyboard-hide'
     this.highlightBtn = ''
+    this.heroesService.getHeroes(letter)
+      .subscribe((response: HeroesResponseInterfaces) => {
+        this.heroes = response.results
+      })
+    this.searchControl.reset()
   }
 
-  public getClassSearch(search: string) {
-    return undefined;
-  }
-
-  public getQtyHeroes(): number {
-    this.qtyHeroes = this.heroes.length
-    return  this.heroes.length
+  public searchHeroes(): void {
+    if (this.searchControl.value) {
+      this.heroesService.getHeroes(this.searchControl.value)
+        .subscribe((response: HeroesResponseInterfaces) => {
+          this.heroes = response.results
+        })
+    }
+    this.searchControl.reset()
   }
 }
