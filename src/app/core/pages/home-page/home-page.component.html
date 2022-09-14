@@ -43,10 +43,48 @@
         <mat-label>Hero name</mat-label>
 
         <input type="text" matInput placeholder="super" [ngClass]="getClassSearch('search')" [formControl]="searchForm.get('search') | getControl">
-        <mat-icon matSuffix class="home-wrapper-form-full-width__search">search</mat-icon>
+        <mat-icon matSuffix class="home-wrapper-form-full-width__search"
+                  (click)="getQtyHeroes()"
+        >search
+        </mat-icon>
       </mat-form-field>
     </div>
   </div>
+  <div class="home-heroes">
+    <p class="home-heroes__qty"
+       *ngIf="getQtyHeroes()">
+      Found: {{ this.heroes.length }} heroes
+    </p>
+    <div class="home-heroes-cards">
+      <div class="home-heroes-cards-card" *ngFor="let hero of heroes">
+        <img class="home-heroes-cards-card-image" [src]="hero.image.url" alt="image">
+        <div class="home-heroes-cards-card-powerstats">
+          <div class="home-heroes-cards-card-powerstats-item">
+            <img class="home-heroes-cards-card__intelligence" src="assets/img/intelligence.svg" alt="intelligence">
+            <span>&nbsp;{{hero.powerstats.intelligence}}</span>
+          </div>
+          <div class="home-heroes-cards-card-powerstats-item">
+            <img class="home-heroes-cards-card__strength" src="assets/img/strength.svg" alt="strength">
+            <span>&nbsp;{{hero.powerstats.strength}}</span>
+          </div>
+          <div class="home-heroes-cards-card-powerstats-item">
+            <img class="home-heroes-cards-card__speed" src="assets/img/speed.svg" alt="speed">
+            <span>&nbsp;{{hero.powerstats.speed}}</span>
+          </div>
+          <div class="home-heroes-cards-card-powerstats-item">
+            <img class="home-heroes-cards-card__durability" src="assets/img/durability.svg" alt="durability">
+            <span>&nbsp;{{hero.powerstats.durability}}</span>
+          </div>
+          <div class="home-heroes-cards-card-powerstats-item">
+            <img class="home-heroes-cards-card__power" src="assets/img/power.svg" alt="power">
+            <span>&nbsp;{{hero.powerstats.power}}</span>
 
+          </div>  <div class="home-heroes-cards-card-powerstats-item">
+            <img class="home-heroes-cards-card__combat" src="assets/img/combat.svg" alt="combat">
+            <span>&nbsp;{{hero.powerstats.combat}}</span>
+          </div>   </div>
 
+      </div>
+    </div>
+  </div>
 </div>

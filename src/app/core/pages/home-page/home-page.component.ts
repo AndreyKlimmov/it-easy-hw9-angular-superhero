@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {FormControl} from "@angular/forms";
+import {HeroesService} from "../../services/heroes.service";
+import {HeroesResponseInterfaces} from "../../interfaces/http-interfaces";
 
 @Component({
   selector: 'app-home-page',
@@ -14,14 +16,17 @@ export class HomePageComponent implements OnInit {
   public pressedLetter: string = '';
   public keyboardHide: string = 'keyboard-hide';
   public highlightBtn: string = '';
+  public qtyHeroes: number = 0;
+  public heroes: any[] = [];
 
   constructor(
-
-    private router: Router
+    private router: Router,
+    private heroesService: HeroesService
   ) { }
 
   ngOnInit(): void {
     this.initializeForm()
+    this.getHeroes()
   }
   private initializeForm(): void {
     this.searchForm = new FormControl<any>('', [])
@@ -29,6 +34,11 @@ export class HomePageComponent implements OnInit {
       this.authUser = JSON.parse(localStorage.getItem('session') || '')
     }
     console.log(this.authUser);
+  }
+  private getHeroes(): void {
+     this.heroesService.getHeroes().subscribe(
+       (data: HeroesResponseInterfaces) => {
+         this.heroes = data.results})
   }
 
   public navToPage(pagePath: any): void {
@@ -54,5 +64,10 @@ export class HomePageComponent implements OnInit {
 
   public getClassSearch(search: string) {
     return undefined;
+  }
+
+  public getQtyHeroes(): number {
+    this.qtyHeroes = this.heroes.length
+    return  this.heroes.length
   }
 }

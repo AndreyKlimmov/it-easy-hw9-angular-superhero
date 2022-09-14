@@ -1,5 +1,7 @@
 .home {
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   &-header {
     display: flex;
@@ -20,9 +22,10 @@
       color: blueviolet;
     }
   }
+
   &-wrapper {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
 
     &-form {
       width: 760px;
@@ -30,7 +33,7 @@
       left: -80px;
       display: flex;
       flex-direction: row;
-      align-items: start;
+      align-items: flex-start;
       justify-content: center;
       //border: 1px solid;
       position: relative;
@@ -38,7 +41,7 @@
       &__keyboard {
         width: 210px;
         padding: 0;
-        top: 0px;
+        top: 0;
 
         display: flex;
         flex-wrap: wrap;
@@ -78,9 +81,79 @@
         transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
       }
     }
-
   }
+  &-heroes {
+    //border: 1px solid;
+    width: 550px;
+    margin: 0 auto;
+    top: -205px;
+    position: relative;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &__qty {
+      min-height: 24px;
+      display: block;
+      //border: 1px solid #000;
+      margin: 0 auto;
+      margin-bottom: 10px;
+      font-weight: 700;
+      color: blueviolet;
+    }
+
+    &-cards {
+      //border: 1px solid;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      &-card {
+        margin: 0 auto;
+        //border: 1px solid;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        &-image {
+          //border: 1px solid;
+          margin: 0 auto;
+          width: 80%;
+          border-radius: 30px;
+        }
+        &-powerstats {
+          margin: 0 auto;
+          margin-bottom: -50px;
+          //border: 1px solid;
+          position: relative;
+          z-index: 1;
+          top: -80px;
+
+          display: flex;
+          flex-direction: row;
+
+          &-item {
+            width: 32px;
+            height: 60px;
+            margin: 0 7px 0 7px;
+            padding: 5px;
+            border-radius: 18px;
+            background-color: rgba(255, 255, 255, .7);
+
+            & img {
+              //border: 1px solid;
+              //border-radius: 8px;
+              width: 32px;
+            }
+          }
+
+
+        }
+      }
+    }
+  }
 }
 
 .mat-button.home-wrapper-form__btn {
