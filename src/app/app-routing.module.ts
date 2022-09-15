@@ -23,7 +23,7 @@ const routes: Routes = [
     loadChildren: () => import('./core/pages/battle-page/battle-page.module').then(m => m.BattlePageModule)
   },
   {
-    path: 'hero-details',
+    path: 'hero-details/:id',
     loadChildren: () => import('./core/pages/hero-details-page/hero-details-page.module').then(m => m.HeroDetailsPageModule)
   },
   {

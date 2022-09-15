@@ -7,6 +7,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {GetControlModule} from "../../pipes/get-control.module";
+import {MatIconModule} from "@angular/material/icon";
 
 const routes: Routes = [
   {
@@ -19,14 +20,15 @@ const routes: Routes = [
   declarations: [
     LoginPageComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    GetControlModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        GetControlModule,
+        MatIconModule
+    ]
 })
 export class LoginPageModule { }

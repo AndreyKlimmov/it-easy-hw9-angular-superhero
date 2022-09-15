@@ -11,6 +11,7 @@ export class LoginPageComponent implements OnInit {
   public loginForm!: FormGroup;
   public noSuchUser: boolean = false;
   public noUserMessage: string = 'No such email found or password is wrong';
+  public hide: boolean = true;
 
   constructor(
     private fb: FormBuilder,

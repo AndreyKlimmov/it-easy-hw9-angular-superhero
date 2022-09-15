@@ -41,11 +41,14 @@
 
       <mat-form-field class="example-form-field" appearance="fill">
 <!--        <mat-label>Clearable input</mat-label>-->
-        <input matInput type="text" [formControl]="loginForm.get('password') | getControl">
+        <input matInput [type]="hide ? 'password' : 'text'" [formControl]="loginForm.get('password') | getControl">
         <!--        <button *ngIf="passwordControl.value" matSuffix mat-icon-button aria-label="Clear"-->
         <!--                (click)="passwordControl.reset('')">-->
         <!--          <mat-icon>close</mat-icon>-->
         <!--        </button>-->
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
       </mat-form-field>
     </div>
     <div class="login-form-warning">

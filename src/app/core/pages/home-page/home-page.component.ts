@@ -75,4 +75,10 @@ export class HomePageComponent implements OnInit {
     }
     this.searchControl.reset()
   }
+
+  public navToHeroDetailsPage(hero: any): void {
+    if (hero.id) {
+      this.router.navigate(['/hero-details', hero.id])
+    }
+  }
 }

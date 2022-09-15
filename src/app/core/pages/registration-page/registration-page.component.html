@@ -40,11 +40,14 @@
 
       <mat-form-field class="example-form-field" appearance="fill">
 <!--        <mat-label>password</mat-label>-->
-        <input matInput [ngClass]="getClassEmail('password')" type="text" [formControl]="registrationForm.get('password') | getControl">
+        <input matInput [ngClass]="getClassEmail('password')" [type]="hide ? 'password' : 'text'" [formControl]="registrationForm.get('password') | getControl">
 <!--        <button *ngIf="passwordControl.value" matSuffix mat-icon-button aria-label="Clear"-->
 <!--                (click)="passwordControl.reset('')">-->
 <!--          <mat-icon>close</mat-icon>-->
 <!--        </button>-->
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
       </mat-form-field>
     </div>
     <div class="registration-form-control">
@@ -52,11 +55,14 @@
 
       <mat-form-field class="example-form-field" appearance="fill">
 <!--        <mat-label>repeat password</mat-label>-->
-        <input matInput [ngClass]="getClassEmail('confirmPassword')" type="text" [formControl]="registrationForm.get('confirmPassword') | getControl">
+        <input matInput [ngClass]="getClassEmail('confirmPassword')" [type]="hide ? 'password' : 'text'" [formControl]="registrationForm.get('confirmPassword') | getControl">
 <!--        <button *ngIf="confirmPasswordControl.value" matSuffix mat-icon-button aria-label="Clear"-->
 <!--                (click)="confirmPasswordControl.reset('')">-->
 <!--          <mat-icon>close</mat-icon>-->
 <!--        </button>-->
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
       </mat-form-field>
     </div>
     <div class="registration-form-control">

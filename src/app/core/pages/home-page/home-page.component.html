@@ -42,7 +42,7 @@
       <mat-form-field class="home-wrapper-form-full-width" appearance="fill">
         <mat-label>Hero name</mat-label>
 
-        <input type="text" matInput placeholder="super"
+        <input type="text" matInput placeholder="super" (keyup.enter)="searchHeroes()"
                [formControl]="searchControl">
         <mat-icon matSuffix class="home-wrapper-form-full-width__search"
                   (click)="searchHeroes()"
@@ -71,7 +71,7 @@
           <button
             mat-button
             class="home-heroes-cards-card-buttons__btn"
-            (click)="navToPage('hero-details')"
+            (click)="navToHeroDetailsPage(hero)"
           >View info
           </button>
         </div>

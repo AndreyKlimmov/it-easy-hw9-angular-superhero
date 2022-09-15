@@ -17,6 +17,7 @@ export class RegistrationPageComponent implements OnInit {
   // public passwordControl!: FormControl;
   // public confirmPasswordControl!: FormControl;
   //@Input('email-invalid')
+  public hide: boolean = true;
 
   public registrationForm!: FormGroup;
   //public test: any = this.registrationForm.controls['email']['status'] || ''
