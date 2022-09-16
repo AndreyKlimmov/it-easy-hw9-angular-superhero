@@ -8,6 +8,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {GetControlModule} from "../../pipes/get-control.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import {HeroCardModule} from "../../components/hero-card/hero-card.module";
+import {HomeHederModule} from "../../components/home-heder/home-heder.module";
 
 const routes: Routes = [
   {
@@ -17,18 +19,23 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [
-    HomePageComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    GetControlModule,
-    ReactiveFormsModule
-  ]
+    declarations: [
+        HomePageComponent
+    ],
+    exports: [
+        HomePageComponent
+    ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        GetControlModule,
+        ReactiveFormsModule,
+        HeroCardModule,
+        HomeHederModule
+    ]
 })
 export class HomePageModule { }

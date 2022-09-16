@@ -17,6 +17,7 @@ export class RegistrationPageComponent implements OnInit {
   // public passwordControl!: FormControl;
   // public confirmPasswordControl!: FormControl;
   //@Input('email-invalid')
+  public disableBtnFromRegistration: boolean = true;
   public hide: boolean = true;
 
   public registrationForm!: FormGroup;

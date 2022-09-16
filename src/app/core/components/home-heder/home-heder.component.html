@@ -1,0 +1,19 @@
+<div class="home-header">
+  <img (click)="navToPage('home')" src="assets/img/logo-hero.svg" alt="logo" class="home-header__img">
+  <app-button-header
+    [buttonText]="btnBattleText"
+    [buttonClass]="btnBattleClass"
+    (click)="navToPage('battle')"
+  ></app-button-header>
+  <app-button-header
+    [buttonText]="authUser.name"
+    [buttonClass]="btnBattleClass"
+    (click)="navToPage('user')"
+  ></app-button-header>
+<!--  <button-->
+<!--    mat-button-->
+<!--    class="home-header__btn"-->
+<!--    (click)="navToPage('user')"-->
+<!--  >{{ authUser.name }}-->
+<!--  </button>-->
+</div>

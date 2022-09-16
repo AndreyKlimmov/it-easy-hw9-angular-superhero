@@ -12,6 +12,7 @@ export class HeroDetailsPageComponent implements OnInit {
   public authUser: any = {'name': 'Log in'};
   public hero: any;
   public details!: any[];
+  public forDetailsCardClass: string = 'home-heroes-cards-card'
 
   constructor(
     private router: Router,

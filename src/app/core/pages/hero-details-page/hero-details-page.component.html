@@ -1,62 +1,66 @@
 <div class="hero-details">
-  <div class="hero-details-header">
-    <img (click)="navToPage('home')" src="assets/img/logo-hero.svg" alt="logo" class="hero-details-header__img">
-    <button
-      mat-button
-      class="hero-details-header__btn"
-      (click)="navToPage('battle')"
-    >Battle
-    </button>
-    <button
-      mat-button
-      class="hero-details-header__btn"
-      (click)="navToPage('user')"
-    >{{ authUser.name }}
-    </button>
-  </div>
+  <app-home-heder></app-home-heder>
+<!--  <div class="hero-details-header">-->
+<!--    <img (click)="navToPage('home')" src="assets/img/logo-hero.svg" alt="logo" class="hero-details-header__img">-->
+<!--    <button-->
+<!--      mat-button-->
+<!--      class="hero-details-header__btn"-->
+<!--      (click)="navToPage('battle')"-->
+<!--    >Battle-->
+<!--    </button>-->
+<!--    <button-->
+<!--      mat-button-->
+<!--      class="hero-details-header__btn"-->
+<!--      (click)="navToPage('user')"-->
+<!--    >{{ authUser.name }}-->
+<!--    </button>-->
+<!--  </div>-->
 
   <div class="hero-details-container" *ngIf="hero">
-    <div class="hero-details-container-card">
-      <img class="hero-details-container-card-image" [src]="hero.image.url" alt="image">
-      <div class="hero-details-container-card-powerstats">
-        <div class="hero-details-container-card-powerstats-item">
-          <img class="hero-details-container-card__intelligence" src="assets/img/intelligence.svg" alt="intelligence">
-          <span>&nbsp;{{hero.powerstats.intelligence}}</span>
-        </div>
-        <div class="hero-details-container-card-powerstats-item">
-          <img class="hero-details-container-card__strength" src="assets/img/strength.svg" alt="strength">
-          <span>&nbsp;{{hero.powerstats.strength}}</span>
-        </div>
-        <div class="hero-details-container-card-powerstats-item">
-          <img class="hero-details-container-card__speed" src="assets/img/speed.svg" alt="speed">
-          <span>&nbsp;{{hero.powerstats.speed}}</span>
-        </div>
-        <div class="hero-details-container-card-powerstats-item">
-          <img class="hero-details-container-card__durability" src="assets/img/durability.svg" alt="durability">
-          <span>&nbsp;{{hero.powerstats.durability}}</span>
-        </div>
-        <div class="hero-details-container-card-powerstats-item">
-          <img class="hero-details-container-card__power" src="assets/img/power.svg" alt="power">
-          <span>&nbsp;{{hero.powerstats.power}}</span>
+<!--    <div class="hero-details-container-card">-->
+<!--      <img class="hero-details-container-card-image" [src]="hero.image.url" alt="image">-->
+<!--      <div class="hero-details-container-card-powerstats">-->
+<!--        <div class="hero-details-container-card-powerstats-item">-->
+<!--          <img class="hero-details-container-card__intelligence" src="assets/img/intelligence.svg" alt="intelligence">-->
+<!--          <span>&nbsp;{{hero.powerstats.intelligence}}</span>-->
+<!--        </div>-->
+<!--        <div class="hero-details-container-card-powerstats-item">-->
+<!--          <img class="hero-details-container-card__strength" src="assets/img/strength.svg" alt="strength">-->
+<!--          <span>&nbsp;{{hero.powerstats.strength}}</span>-->
+<!--        </div>-->
+<!--        <div class="hero-details-container-card-powerstats-item">-->
+<!--          <img class="hero-details-container-card__speed" src="assets/img/speed.svg" alt="speed">-->
+<!--          <span>&nbsp;{{hero.powerstats.speed}}</span>-->
+<!--        </div>-->
+<!--        <div class="hero-details-container-card-powerstats-item">-->
+<!--          <img class="hero-details-container-card__durability" src="assets/img/durability.svg" alt="durability">-->
+<!--          <span>&nbsp;{{hero.powerstats.durability}}</span>-->
+<!--        </div>-->
+<!--        <div class="hero-details-container-card-powerstats-item">-->
+<!--          <img class="hero-details-container-card__power" src="assets/img/power.svg" alt="power">-->
+<!--          <span>&nbsp;{{hero.powerstats.power}}</span>-->
 
-        </div>  <div class="hero-details-container-card-powerstats-item">
-        <img class="hero-details-container-card__combat" src="assets/img/combat.svg" alt="combat">
-        <span>&nbsp;{{hero.powerstats.combat}}</span>
-      </div>
-      </div>
-    </div>
+<!--        </div>  <div class="hero-details-container-card-powerstats-item">-->
+<!--        <img class="hero-details-container-card__combat" src="assets/img/combat.svg" alt="combat">-->
+<!--        <span>&nbsp;{{hero.powerstats.combat}}</span>-->
+<!--      </div>-->
+<!--      </div>-->
+<!--    </div>-->
+    <app-hero-card
+      [ngClass]="forDetailsCardClass"
+      [hero]="hero"
+      [disableViewBtn]="'hideBtn'"
+      [disableName]="'hideBtn'"
+    ></app-hero-card>
 
     <div class="hero-details-container-details">
-      <p><b>{{this.hero.name}}</b></p>
+      <h2><b>{{this.hero.name}}</b></h2>
       <p><b>Power statistic</b></p>
       <span *ngFor="let line of transformDetails(this.hero.powerstats)">{{line}}<br></span><span><br></span>
       <p><b>History</b></p>
       <span *ngFor="let line of transformDetails(this.hero.biography)">{{line}}<br></span><span><br></span>
       <p><b>Appearance</b></p>
       <span *ngFor="let line of transformDetails(this.hero.appearance)">{{line}}<br></span><span><br></span>
-
-
-
     </div>
 
 

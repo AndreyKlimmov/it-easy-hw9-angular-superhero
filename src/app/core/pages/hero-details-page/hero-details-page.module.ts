@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HeroDetailsPageComponent } from './hero-details-page.component';
 import {RouterModule, Routes} from "@angular/router";
 import {MatButtonModule} from "@angular/material/button";
+import {HeroCardModule} from "../../components/hero-card/hero-card.module";
+import {HomeHederModule} from "../../components/home-heder/home-heder.module";
 
 const routes: Routes = [
   {
@@ -15,10 +17,12 @@ const routes: Routes = [
   declarations: [
     HeroDetailsPageComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    MatButtonModule,
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        MatButtonModule,
+        HeroCardModule,
+        HomeHederModule,
+    ]
 })
 export class HeroDetailsPageModule { }

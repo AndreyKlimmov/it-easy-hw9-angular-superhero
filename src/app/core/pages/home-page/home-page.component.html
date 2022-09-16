@@ -1,21 +1,23 @@
 <!--<p>home-page works!</p>-->
 <!--<p>User: {{authUser.email}}</p>-->
+
 <div class="home">
-  <div class="home-header">
-    <img (click)="navToPage('home')" src="assets/img/logo-hero.svg" alt="logo" class="home-header__img">
-    <button
-      mat-button
-      class="home-header__btn"
-      (click)="navToPage('battle')"
-    >Battle
-    </button>
-    <button
-      mat-button
-      class="home-header__btn"
-      (click)="navToPage('user')"
-    >{{ authUser.name }}
-    </button>
-  </div>
+  <app-home-heder></app-home-heder>
+<!--  <div class="home-header">-->
+<!--    <img (click)="navToPage('home')" src="assets/img/logo-hero.svg" alt="logo" class="home-header__img">-->
+<!--    <button-->
+<!--      mat-button-->
+<!--      class="home-header__btn"-->
+<!--      (click)="navToPage('battle')"-->
+<!--    >Battle-->
+<!--    </button>-->
+<!--    <button-->
+<!--      mat-button-->
+<!--      class="home-header__btn"-->
+<!--      (click)="navToPage('user')"-->
+<!--    >{{ authUser.name }}-->
+<!--    </button>-->
+<!--  </div>-->
   <div class="home-wrapper">
 
     <div class="home-wrapper-form">
@@ -57,52 +59,55 @@
       Found: {{ this.heroes.length }} heroes
     </p>
     <div class="home-heroes-cards">
-      <div class="home-heroes-cards-card" *ngFor="let hero of heroes">
-        <div class="home-heroes-cards-card-buttons">
-          <button
-            mat-button
-            class="home-heroes-cards-card-buttons__btn"
-            (click)="navToPage('user')"
-          >Select
-          </button>
-          <div class="home-heroes-cards-card-buttons__name"
-          >{{hero.name}}
-          </div>
-          <button
-            mat-button
-            class="home-heroes-cards-card-buttons__btn"
-            (click)="navToHeroDetailsPage(hero)"
-          >View info
-          </button>
-        </div>
-        <img class="home-heroes-cards-card-image" [src]="hero.image.url" alt="image">
-        <div class="home-heroes-cards-card-powerstats">
-          <div class="home-heroes-cards-card-powerstats-item">
-            <img class="home-heroes-cards-card__intelligence" src="assets/img/intelligence.svg" alt="intelligence">
-            <span>&nbsp;{{hero.powerstats.intelligence}}</span>
-          </div>
-          <div class="home-heroes-cards-card-powerstats-item">
-            <img class="home-heroes-cards-card__strength" src="assets/img/strength.svg" alt="strength">
-            <span>&nbsp;{{hero.powerstats.strength}}</span>
-          </div>
-          <div class="home-heroes-cards-card-powerstats-item">
-            <img class="home-heroes-cards-card__speed" src="assets/img/speed.svg" alt="speed">
-            <span>&nbsp;{{hero.powerstats.speed}}</span>
-          </div>
-          <div class="home-heroes-cards-card-powerstats-item">
-            <img class="home-heroes-cards-card__durability" src="assets/img/durability.svg" alt="durability">
-            <span>&nbsp;{{hero.powerstats.durability}}</span>
-          </div>
-          <div class="home-heroes-cards-card-powerstats-item">
-            <img class="home-heroes-cards-card__power" src="assets/img/power.svg" alt="power">
-            <span>&nbsp;{{hero.powerstats.power}}</span>
+<!--      <div class="home-heroes-cards-card" *ngFor="let hero of heroes">-->
+<!--        <div class="home-heroes-cards-card-buttons">-->
+<!--          <button-->
+<!--            mat-button-->
+<!--            class="home-heroes-cards-card-buttons__btn"-->
+<!--            (click)="navToPage('user')"-->
+<!--          >Select-->
+<!--          </button>-->
+<!--          <div class="home-heroes-cards-card-buttons__name"-->
+<!--          >{{hero.name}}-->
+<!--          </div>-->
+<!--          <button-->
+<!--            mat-button-->
+<!--            class="home-heroes-cards-card-buttons__btn"-->
+<!--            (click)="navToHeroDetailsPage(hero)"-->
+<!--          >View info-->
+<!--          </button>-->
+<!--        </div>-->
+<!--        <img class="home-heroes-cards-card-image" [src]="hero.image.url" alt="image">-->
+<!--        <div class="home-heroes-cards-card-powerstats">-->
+<!--          <div class="home-heroes-cards-card-powerstats-item">-->
+<!--            <img class="home-heroes-cards-card__intelligence" src="assets/img/intelligence.svg" alt="intelligence">-->
+<!--            <span>&nbsp;{{hero.powerstats.intelligence}}</span>-->
+<!--          </div>-->
+<!--          <div class="home-heroes-cards-card-powerstats-item">-->
+<!--            <img class="home-heroes-cards-card__strength" src="assets/img/strength.svg" alt="strength">-->
+<!--            <span>&nbsp;{{hero.powerstats.strength}}</span>-->
+<!--          </div>-->
+<!--          <div class="home-heroes-cards-card-powerstats-item">-->
+<!--            <img class="home-heroes-cards-card__speed" src="assets/img/speed.svg" alt="speed">-->
+<!--            <span>&nbsp;{{hero.powerstats.speed}}</span>-->
+<!--          </div>-->
+<!--          <div class="home-heroes-cards-card-powerstats-item">-->
+<!--            <img class="home-heroes-cards-card__durability" src="assets/img/durability.svg" alt="durability">-->
+<!--            <span>&nbsp;{{hero.powerstats.durability}}</span>-->
+<!--          </div>-->
+<!--          <div class="home-heroes-cards-card-powerstats-item">-->
+<!--            <img class="home-heroes-cards-card__power" src="assets/img/power.svg" alt="power">-->
+<!--            <span>&nbsp;{{hero.powerstats.power}}</span>-->
 
-          </div>  <div class="home-heroes-cards-card-powerstats-item">
-            <img class="home-heroes-cards-card__combat" src="assets/img/combat.svg" alt="combat">
-            <span>&nbsp;{{hero.powerstats.combat}}</span>
-          </div>   </div>
+<!--          </div>  <div class="home-heroes-cards-card-powerstats-item">-->
+<!--            <img class="home-heroes-cards-card__combat" src="assets/img/combat.svg" alt="combat">-->
+<!--            <span>&nbsp;{{hero.powerstats.combat}}</span>-->
+<!--          </div>   </div>-->
 
-      </div>
+<!--      </div>-->
+        <app-hero-card *ngFor="let hero of heroes; index as i" [hero] = heroes[i]
+        ></app-hero-card>
+
     </div>
   </div>
 </div>

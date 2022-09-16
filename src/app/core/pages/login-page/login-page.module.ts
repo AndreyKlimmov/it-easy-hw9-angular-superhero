@@ -8,6 +8,8 @@ import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {GetControlModule} from "../../pipes/get-control.module";
 import {MatIconModule} from "@angular/material/icon";
+import {HomePageModule} from "../home-page/home-page.module";
+import {HomeHederModule} from "../../components/home-heder/home-heder.module";
 
 const routes: Routes = [
   {
@@ -28,7 +30,8 @@ const routes: Routes = [
         MatInputModule,
         ReactiveFormsModule,
         GetControlModule,
-        MatIconModule
+        MatIconModule,
+        HomeHederModule
     ]
 })
 export class LoginPageModule { }
