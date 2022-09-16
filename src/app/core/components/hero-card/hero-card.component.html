@@ -4,8 +4,8 @@
         mat-button
         class="home-heroes-cards-card-buttons__btn"
         [ngClass]="disableSelectBtn"
-        (click)="navToPage('user')"
-      >Select
+        (click)="selectHero()"
+      >{{select}}
       </button>
       <div class="home-heroes-cards-card-buttons__name"
            [ngClass]="disableName"
