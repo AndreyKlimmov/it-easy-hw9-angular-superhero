@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl} from "@angular/forms";
 import {Router} from "@angular/router";
 
 @Component({
@@ -8,6 +7,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./user-page.component.scss']
 })
 export class UserPageComponent implements OnInit {
+  public authUser: any = {'name': 'Log in'};
 
   constructor(
     private router: Router,
@@ -17,9 +17,16 @@ export class UserPageComponent implements OnInit {
     this.initializeForm()
   }
   private initializeForm(): void {
-    if (localStorage.getItem('session') === null) {
+    if (localStorage.getItem('session')) {
+      this.authUser = JSON.parse(localStorage.getItem('session') || '')
+    }  else {
       this.router.navigate(['/login'])
     }
   }
+
+  public navToPage(pagePath: any): void {
+    this.router.navigate(['/' + pagePath])
+  }
+
 
 }

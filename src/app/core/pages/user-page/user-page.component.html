@@ -1,1 +1,24 @@
-<p>user-page works!</p>
+<div class="user">
+  <div class="user-header">
+    <img (click)="navToPage('home')" src="assets/img/logo-hero.svg" alt="logo" class="user-header__img">
+    <button
+      mat-button
+      class="user-header__btn"
+      (click)="navToPage('battle')"
+    >Battle
+    </button>
+    <button
+      mat-button
+      class="user-header__btn"
+      (click)="navToPage('user')"
+    >{{ authUser.name }}
+    </button>
+  </div>
+
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Hero list">Content 1</mat-tab>
+    <mat-tab label="History">Content 2</mat-tab>
+    <mat-tab label="Bonuses">Content 3</mat-tab>
+  </mat-tab-group>
+
+</div>
