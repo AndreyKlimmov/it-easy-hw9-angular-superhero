@@ -46,7 +46,8 @@ export class RegistrationPageComponent implements OnInit {
         email: this.registrationForm.get('email')?.value,
         password: this.registrationForm.get('password')?.value,
         //confirmPassword: this.registrationForm.get('confirmPassword')?.value,
-        name: this.registrationForm.get('name')?.value
+        name: this.registrationForm.get('name')?.value,
+        id: Math.ceil(Math.random()*10000),
 
         // email: this.emailControl.value,
         // password: this.passwordControl.value,

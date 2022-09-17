@@ -1,4 +1,4 @@
-.home-heroes-cards-card {
+.hero-card {
   margin: 0 auto;
   //border: 1px solid;
   display: flex;
@@ -77,56 +77,30 @@
 }
 
 
-
-.home-heroes-cards-card {
-  //margin: 0 auto;
-  //border: 1px solid;
-  width: 550px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-
-  &-image {
-    //border: 1px solid;
-    margin: 0 auto;
-    width: 80%;
-    border-radius: 30px;
-  }
-
-  &-powerstats {
-    margin: 0 auto;
-    margin-bottom: -50px;
-    //border: 1px solid;
-    position: relative;
-    z-index: 1;
-    top: -80px;
-
+.hero-details-page {
+  &-hero-card {
+    width: 550px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
 
-    &-item {
-      width: 32px;
-      height: 60px;
-      margin: 0 7px 0 7px;
-      padding: 5px;
-      border-radius: 18px;
-      background-color: rgba(255, 255, 255, .7);
-
-      & img {
-        //border: 1px solid;
-        //border-radius: 8px;
-        width: 32px;
-      }
-    }
-
-
+.user-page-hero-list {
+  &-hero-card {
+    //transform: scale(60%);
+    zoom: .8;
+    //width: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 
 .hideBtn {
   visibility: hidden;
 }
+
 .selectedHero {
   font-size: 16px;
   font-weight: 400;
@@ -142,88 +116,19 @@
   user-select: none;
 
 }
-  //.home-heroes-cards-card {
-  //  margin: 0 auto;
-  //  //border: 1px solid;
-  //  display: flex;
-  //  flex-direction: column;
-  //  justify-content: center;
-  //
-  //  &-buttons {
-  //    width: 74%;
-  //    margin: 0 auto;
-  //    margin-bottom: -40px;
-  //    //border: 1px solid;
-  //    position: relative;
-  //    z-index: 1;
-  //    top: 5px;
-  //
-  //    display: flex;
-  //    flex-direction: row;
-  //    justify-content: space-between;
-  //
-  //    &__btn {
-  //      //border: 1px solid;
-  //      font-size: 16px;
-  //      font-weight: 400;
-  //      color: blueviolet;
-  //      scale: 80%;
-  //      background-color: rgba(255, 255, 255, .7);
-  //    }
-  //
-  //    &__name {
-  //      //border: 1px solid;
-  //      font-size: 20px;
-  //      border-radius: 15px;
-  //      padding: 0 10px 0 10px;
-  //      vertical-align: middle;
-  //      line-height: 35px;
-  //      white-space: nowrap;
-  //      font-weight: 400;
-  //      scale: 80%;
-  //      background-color: rgba(255, 255, 255, 0.7); }
-  //  }
-  //
-  //  &-image {
-  //    //border: 1px solid;
-  //    margin: 0 auto;
-  //    width: 80%;
-  //    border-radius: 30px;
-  //  }
-  //  &-powerstats {
-  //    margin: 0 auto;
-  //    margin-bottom: -50px;
-  //    //border: 1px solid;
-  //    position: relative;
-  //    z-index: 1;
-  //    top: -80px;
-  //
-  //    display: flex;
-  //    flex-direction: row;
-  //
-  //    &-item {
-  //      width: 32px;
-  //      height: 60px;
-  //      margin: 0 7px 0 7px;
-  //      padding: 5px;
-  //      border-radius: 18px;
-  //      background-color: rgba(255, 255, 255, .7);
-  //
-  //      & img {
-  //        //border: 1px solid;
-  //        //border-radius: 8px;
-  //        width: 32px;
-  //      }
-  //    }
-  //
-  //
-  //  }
-  //}
+.readyHero {
+  font-size: 16px;
+  font-weight: 400;
+  //color: blueviolet;
+  scale: 80%;
+  background-color: rgba(255, 87, 51, .7);
 
+  //background-image: url("../../../../assets/img/white_check.svg.png");
+  background-size: 30%;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
 
-
-
-
-
+}
 
 

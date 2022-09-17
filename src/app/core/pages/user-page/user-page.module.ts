@@ -5,6 +5,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {MatButtonModule} from "@angular/material/button";
 import {MatTabsModule} from "@angular/material/tabs";
 import {HomeHederModule} from "../../components/home-heder/home-heder.module";
+import {HeroCardModule} from "../../components/hero-card/hero-card.module";
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
         MatButtonModule,
         MatTabsModule,
         HomeHederModule,
+        HeroCardModule,
     ]
 })
 export class UserPageModule { }

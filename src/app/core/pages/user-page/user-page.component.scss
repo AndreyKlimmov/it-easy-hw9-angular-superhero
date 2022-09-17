@@ -22,6 +22,40 @@
       color: blueviolet;
     }
   }
+
+  &-hero-list {
+
+    &-btn {
+      border: none;
+      border-radius: 12px;
+      background-color: rgb(255, 87, 51);
+      color: white;
+      display: flex;
+      flex-direction: row;
+      padding: 0 50px;
+      margin: 15px auto 20px auto;
+      cursor: pointer;
+
+      &__plus {
+        font-size: 36px;
+        font-weight: 1000;
+        line-height: 36px;
+        vertical-align: middle;
+      }
+      &__text {
+        font-size: 24px;
+        font-weight: 800;
+        line-height: 36px;
+        vertical-align: middle;
+      }
+    }
+
+    &-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
 }
 
 :host ::ng-deep .mat-tab-label-active {

@@ -1,48 +1,48 @@
-  <div class="home-heroes-cards-card">
-    <div class="home-heroes-cards-card-buttons">
+<div class="{{page}}hero-card">
+    <div class="hero-card-buttons">
       <button
         mat-button
-        class="home-heroes-cards-card-buttons__btn"
+        class="hero-card-buttons__btn"
         [ngClass]="disableSelectBtn"
         (click)="selectHero()"
       >{{select}}
       </button>
-      <div class="home-heroes-cards-card-buttons__name"
+      <div class="hero-card-buttons__name"
            [ngClass]="disableName"
       >{{hero.name}}
       </div>
       <button
         mat-button
-        class="home-heroes-cards-card-buttons__btn"
+        class="hero-card-buttons__btn"
         [ngClass]="disableViewBtn"
         (click)="navToHeroDetailsPage(hero)"
       >View info
       </button>
     </div>
-    <img class="home-heroes-cards-card-image" [src]="hero.image.url" alt="image">
-    <div class="home-heroes-cards-card-powerstats">
-      <div class="home-heroes-cards-card-powerstats-item">
-        <img class="home-heroes-cards-card__intelligence" src="assets/img/intelligence.svg" alt="intelligence">
+    <img class="hero-card-image" [src]="hero.image.url" alt="image">
+    <div class="hero-card-powerstats">
+      <div class="hero-card-powerstats-item">
+        <img class="hero-card__intelligence" src="assets/img/intelligence.svg" alt="intelligence">
         <span>&nbsp;{{hero.powerstats.intelligence}}</span>
       </div>
-      <div class="home-heroes-cards-card-powerstats-item">
-        <img class="home-heroes-cards-card__strength" src="assets/img/strength.svg" alt="strength">
+      <div class="hero-card-powerstats-item">
+        <img class="hero-card__strength" src="assets/img/strength.svg" alt="strength">
         <span>&nbsp;{{hero.powerstats.strength}}</span>
       </div>
-      <div class="home-heroes-cards-card-powerstats-item">
-        <img class="home-heroes-cards-card__speed" src="assets/img/speed.svg" alt="speed">
+      <div class="hero-card-powerstats-item">
+        <img class="hero-card__speed" src="assets/img/speed.svg" alt="speed">
         <span>&nbsp;{{hero.powerstats.speed}}</span>
       </div>
-      <div class="home-heroes-cards-card-powerstats-item">
-        <img class="home-heroes-cards-card__durability" src="assets/img/durability.svg" alt="durability">
+      <div class="hero-card-powerstats-item">
+        <img class="hero-card__durability" src="assets/img/durability.svg" alt="durability">
         <span>&nbsp;{{hero.powerstats.durability}}</span>
       </div>
-      <div class="home-heroes-cards-card-powerstats-item">
-        <img class="home-heroes-cards-card__power" src="assets/img/power.svg" alt="power">
+      <div class="hero-card-powerstats-item">
+        <img class="hero-card__power" src="assets/img/power.svg" alt="power">
         <span>&nbsp;{{hero.powerstats.power}}</span>
 
-      </div>  <div class="home-heroes-cards-card-powerstats-item">
-      <img class="home-heroes-cards-card__combat" src="assets/img/combat.svg" alt="combat">
+      </div>  <div class="hero-card-powerstats-item">
+      <img class="hero-card__combat" src="assets/img/combat.svg" alt="combat">
       <span>&nbsp;{{hero.powerstats.combat}}</span>
     </div>   </div>
 

@@ -24,4 +24,17 @@ export class HeroesService {
     (`https://www.superheroapi.com/api.php/788682412583063/${heroId}`)
   }
 
+
+  // public getAddedHeroes(heroesId: any) {
+  //   const heroesAdded: any[] = []
+  //   for (let heroId in heroesId) {
+  //     const heroAdded = this.httpClient.get<HeroResponseInterfaces>
+  //     (`https://www.superheroapi.com/api.php/788682412583063/${heroId}`)
+  //     heroesAdded.push(heroAdded)
+  //     console.log('heroesId:', heroesId);
+  //     console.log('heroesAdded:', heroesAdded);
+  //   }
+  //   return heroesAdded
+  // }
+
 }

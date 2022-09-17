@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -12,10 +12,15 @@ export class HeroCardComponent implements OnInit {
   @Input() disableSelectBtn: string = '';
   @Input() disableName: string = '';
   @Input() getReady: boolean = false;
+  @Input() page: string = ''
+  @Input() atUserPage: boolean = false;
+  @Output() updateCardEvent: EventEmitter<void> = new EventEmitter<void>()
   public select: string = 'Select';
   public gotReady: boolean = false;
   public heroList: any[] = [];
+  public heroReadyId: string = '';
   public user: any;
+
 
   constructor(
     private router: Router,
@@ -32,28 +37,40 @@ export class HeroCardComponent implements OnInit {
     if (localStorage.getItem('session')) {
       this.user = JSON.parse(localStorage.getItem('session') || '')
     }
-    if (localStorage.getItem(`${this.user.email}`)) {
-      this.heroList = JSON.parse(localStorage.getItem(`${this.user.email}`) || '')
+    if (localStorage.getItem(`userId-${this.user.id}-heroList`)) {
+      this.heroList = JSON.parse(localStorage.getItem(`userId-${this.user.id}-heroList`) || '')
       const hero = this.heroList.find(
         (heroId: any) => heroId === this.hero.id);
-      if (hero) {this.disableSelectBtn = 'selectedHero'}
+      if (hero && !this.atUserPage) {this.disableSelectBtn = 'selectedHero'}
     }
+    if (localStorage.getItem(`userId-${this.user.id}-heroFight`)) {
+      this.heroReadyId = JSON.parse(localStorage.getItem(`userId-${this.user.id}-heroFight`) || '')
+      if (this.heroReadyId == this.hero.id) {this.disableSelectBtn = 'readyHero'; this.select = 'Ready'}
+      else {this.disableSelectBtn = ''; this.select = 'Get Ready'}
+    }
+
+
   }
 
   public selectHero(): void {
+    this.updateCardEvent.emit()
+    if (!this.atUserPage) {
+      if (this.disableSelectBtn !== 'selectedHero') {
+        if (localStorage.getItem(`userId-${this.user.id}-heroList`) || '') {
+          this.heroList = JSON.parse(localStorage.getItem(`userId-${this.user.id}-heroList`) || '')
+        }
 
-    if (this.disableSelectBtn !== 'selectedHero') {
-      if (localStorage.getItem(`${this.user.email}`) || '') {
-        this.heroList = JSON.parse(localStorage.getItem(`${this.user.email}`) || '')
+        this.heroList.push(this.hero.id)
+        localStorage.setItem(`userId-${this.user.id}-heroList`, JSON.stringify(this.heroList))
+        this.disableSelectBtn = 'selectedHero'
       }
-
-      this.heroList.push(this.hero.id)
-      localStorage.setItem(`${this.user.email}`, JSON.stringify(this.heroList))
-      this.disableSelectBtn = 'selectedHero'
     }
-
-
-
+    else {
+      localStorage.setItem(`userId-${this.user.id}-heroFight`, JSON.stringify(this.hero.id))
+      //this.currentId = this.hero.id
+      //this.disableSelectBtn = 'readyHero'
+      //this.select = 'Ready'
+    }
   }
 
   public navToHeroDetailsPage(hero: any): void {

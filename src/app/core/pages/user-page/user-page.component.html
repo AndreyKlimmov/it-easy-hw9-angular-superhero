@@ -17,7 +17,28 @@
 <!--  </div>-->
 
   <mat-tab-group mat-align-tabs="center">
-    <mat-tab label="Hero list">Content 1</mat-tab>
+    <mat-tab label="Hero list">
+      <div class="user-hero-list">
+        <button class="user-hero-list-btn"
+                (click)="navToPage('home')"
+        >
+          <div class="user-hero-list-btn__plus">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+          <div class="user-hero-list-btn__text">ADD HERO</div>
+        </button>
+        <div class="user-hero-list-content">
+          <app-hero-card
+            [page]="cardClass"
+            [atUserPage]="true"
+            [disableViewBtn]="'hideBtn'"
+            [disableSelectBtn]="''"
+            [getReady]="true"
+            (updateCardEvent)="this.updateList()"
+            *ngFor="let hero of heroes; index as i" [hero] = heroes[i]
+          ></app-hero-card>
+
+        </div>
+      </div>
+    </mat-tab>
     <mat-tab label="History">Content 2</mat-tab>
     <mat-tab label="Bonuses">Content 3</mat-tab>
   </mat-tab-group>
