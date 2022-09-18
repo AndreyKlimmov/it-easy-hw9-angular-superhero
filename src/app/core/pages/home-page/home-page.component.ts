@@ -29,10 +29,9 @@ export class HomePageComponent implements OnInit {
   }
   private initializeForm(): void {
     this.searchControl = new FormControl<any>('', [])
-    if (localStorage.getItem('session')) {
-      this.authUser = JSON.parse(localStorage.getItem('session') || '')
+    if (!localStorage.getItem('session')) {
+      this.router.navigate(['/login'])
     }
-    console.log(this.authUser);
   }
   // private getHeroes(): void {
   //    this.heroesService.getHeroes().subscribe(

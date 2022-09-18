@@ -1,0 +1,38 @@
+<table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+       class="mat-elevation-z8">
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by date">
+      Battle date and time
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="hero-name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="heroName" sortActionDescription="Sort by hero">
+      Hero name
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.heroName}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="opponent-name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="opponentName" sortActionDescription="Sort by opponent">
+      Opponent name
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.opponentName}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="battle-result">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="battleResult" sortActionDescription="Sort by result">
+      Battle result
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.battleResult}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

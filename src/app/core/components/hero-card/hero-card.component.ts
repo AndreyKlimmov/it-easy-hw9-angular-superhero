@@ -28,7 +28,7 @@ export class HeroCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeVar()
-    console.log('hero:', this.hero);
+    //console.log('hero:', this.hero);
   }
 
   private initializeVar(): void {
@@ -43,7 +43,7 @@ export class HeroCardComponent implements OnInit {
         (heroId: any) => heroId === this.hero.id);
       if (hero && !this.atUserPage) {this.disableSelectBtn = 'selectedHero'}
     }
-    if (localStorage.getItem(`userId-${this.user.id}-heroFight`)) {
+    if (localStorage.getItem(`userId-${this.user.id}-heroFight`) && this.getReady) {
       this.heroReadyId = JSON.parse(localStorage.getItem(`userId-${this.user.id}-heroFight`) || '')
       if (this.heroReadyId == this.hero.id) {this.disableSelectBtn = 'readyHero'; this.select = 'Ready'}
       else {this.disableSelectBtn = ''; this.select = 'Get Ready'}

@@ -35,12 +35,48 @@
             (updateCardEvent)="this.updateList()"
             *ngFor="let hero of heroes; index as i" [hero] = heroes[i]
           ></app-hero-card>
-
+        </div>
+        <div class="user-hero-list-paginator">
+          <mat-paginator [length]="heroesId.length"
+                         [pageSize]="3"
+                         (page)="getPage($event)"
+                         [pageSizeOptions]="[3, 6, 12, 24, 48, 99]"
+                         aria-label="Select page">
+          </mat-paginator>
         </div>
       </div>
     </mat-tab>
-    <mat-tab label="History">Content 2</mat-tab>
-    <mat-tab label="Bonuses">Content 3</mat-tab>
+    <mat-tab label="History">
+      <app-table></app-table>
+    </mat-tab>
+    <mat-tab label="Bonuses">
+      <div class="user-bonuses">
+        <div class="user-bonuses-intelligence">
+          <img src="./../../../../assets/img/powerUps/cloak.jpg" alt="bonus-intelligence">
+          <h3>Dr. Strange's cloak<br>intelligence +10<br>left: <strong>{{intelligence}}</strong></h3>
+        </div>
+        <div class="user-bonuses-strength">
+          <img src="./../../../../assets/img/powerUps/ring.jpg" alt="bonus-strength">
+          <h3>Green lantern's ring<br>strength +10<br>left: <strong>{{strength}}</strong></h3>
+        </div>
+        <div class="user-bonuses-speed">
+          <img src="./../../../../assets/img/powerUps/boots.jpg" alt="bonus-speed">
+          <h3>Flash boots<br>speed +10<br>left: <strong>{{speed}}</strong></h3>
+        </div>
+        <div class="user-bonuses-durability">
+          <img src="./../../../../assets/img/powerUps/shield.jpg" alt="bonus-durability">
+          <h3>Captain America shield<br>durability +10<br>left: <strong>{{durability}}</strong></h3>
+        </div>
+        <div class="user-bonuses-power">
+          <img src="./../../../../assets/img/powerUps/mjolnir.jpg" alt="bonus-power">
+          <h3>Mjolnir<br>power +10<br>left: <strong>{{power}}</strong></h3>
+        </div>
+        <div class="user-bonuses-combat">
+          <img src="./../../../../assets/img/powerUps/ironman.jpg" alt="bonus-combat">
+          <h3>Ironman nano armor<br>combat +10<br>left: <strong>{{combat}}</strong></h3>
+        </div>
+      </div>
+    </mat-tab>
   </mat-tab-group>
 
 </div>

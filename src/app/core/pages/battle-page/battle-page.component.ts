@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-battle-page',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BattlePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
+    this.initialize()
   }
+
+  public initialize():void {
+    if (!localStorage.getItem('session')) {
+      this.router.navigate(['/login'])
+    }
+  }
+
+
+
 
 }

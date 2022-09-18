@@ -25,9 +25,9 @@ export class HeroDetailsPageComponent implements OnInit {
   }
 
   private initializeForm(): void {
-    if (localStorage.getItem('session')) {
-      this.authUser = JSON.parse(localStorage.getItem('session') || '')
-    };
+    if (!localStorage.getItem('session')) {
+      this.router.navigate(['/login'])
+    }
     this.activatedRoute.params.pipe(
       switchMap((gotHero) =>
           this.heroesService.getHeroById(gotHero.id)

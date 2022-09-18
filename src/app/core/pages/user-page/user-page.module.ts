@@ -6,6 +6,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatTabsModule} from "@angular/material/tabs";
 import {HomeHederModule} from "../../components/home-heder/home-heder.module";
 import {HeroCardModule} from "../../components/hero-card/hero-card.module";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {TableModule} from "../../components/table/table.module";
 
 const routes: Routes = [
   {
@@ -25,6 +27,8 @@ const routes: Routes = [
         MatTabsModule,
         HomeHederModule,
         HeroCardModule,
+        MatPaginatorModule,
+        TableModule,
     ]
 })
 export class UserPageModule { }
