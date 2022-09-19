@@ -12,7 +12,7 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {date: formatDate('2019-06-29', 'yyyy.MM.dd', 'en-US'), heroName: 'Hydrogen', opponentName: 'H', battleResult: 'WIN'},
+  {date: formatDate('2019-06-29T23:55:55', 'yyyy.MM.dd hh:mm:ss', 'en-US'), heroName: 'Hydrogen', opponentName: 'H', battleResult: 'WIN'},
   {date: formatDate('2022-09-15', 'yyyy.MM.dd', 'en-US'), heroName: 'Super', opponentName: 'S', battleResult: 'LOOSE'},
   //{date: date('2000'), heroName: 'Hydrogen', opponentName: 'H', battleResult: 'WIN'},
 

@@ -19,12 +19,12 @@ export class UserPageComponent implements OnInit {
   public pageIndex: number = 0;
   public pageSize: number = 3;
 
-   public intelligence: any;
+   public intelligence: number = 5;
    public strength: number = 5;
-   public speed: any;
-   public durability: any;
-   public power: any;
-   public combat: any;
+   public speed: number = 5;
+   public durability: number = 5;
+   public power: number = 5;
+   public combat: number = 5;
 
   constructor(
     private router: Router,
@@ -100,15 +100,22 @@ export class UserPageComponent implements OnInit {
         }
       }
       this.heroesIdnew = b
-      //console.log('heroes:', this.heroes);
+
     }
-    else {this.heroesIdnew.sort((a, b) => a - b)}
+    else {
+      this.heroesIdnew = this.heroesId;
+      this.heroesIdnew.sort((a, b) => a - b)
+    }
+    //console.log('heroesIdnew:', this.heroesIdnew);
 
+    let shortHeroesIdnew
+    this.heroesIdnew.length < this.pageSize ? shortHeroesIdnew = this.heroesIdnew.length : shortHeroesIdnew = this.pageSize
 
-    for (let i = this.pageIndex*this.pageSize; i < (this.pageIndex*this.pageSize + this.pageSize); i++) {
-      console.log('i', i);
+    for (let i = this.pageIndex*this.pageSize; i < (this.pageIndex*this.pageSize + shortHeroesIdnew); i++) {
+      //console.log('i', i);
       this.heroesService.getHeroById(this.heroesIdnew[i]).subscribe((hero: any) => {
         this.heroes.push(hero);
+        //console.log('heroes:', this.heroes);
 
         if (localStorage.getItem(`userId-${this.user.id}-heroFight`) && this.heroes.length == this.pageSize) {
           const heroReadyId = JSON.parse(localStorage.getItem(`userId-${this.user.id}-heroFight`) || '')

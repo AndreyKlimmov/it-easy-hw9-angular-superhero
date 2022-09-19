@@ -61,6 +61,7 @@ export class HomePageComponent implements OnInit {
     this.heroesService.getHeroes(letter)
       .subscribe((response: HeroesResponseInterfaces) => {
         this.heroes = response.results
+        //console.log('this.heroes:', this.heroes);
       })
     this.searchControl.reset()
   }

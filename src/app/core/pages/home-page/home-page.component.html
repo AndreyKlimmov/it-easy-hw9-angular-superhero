@@ -53,10 +53,9 @@
       </mat-form-field>
     </div>
   </div>
-  <div class="home-heroes">
-    <p class="home-heroes__qty"
-       *ngIf="this.heroes.length">
-      Found: {{ this.heroes.length }} heroes
+  <div class="home-heroes" *ngIf="heroes">
+    <p class="home-heroes__qty">
+      Found: {{ heroes.length }} heroes
     </p>
     <div class="home-heroes-cards">
 <!--      <div class="home-heroes-cards-card" *ngFor="let hero of heroes">-->

@@ -25,7 +25,7 @@
           <div class="user-hero-list-btn__plus">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
           <div class="user-hero-list-btn__text">ADD HERO</div>
         </button>
-        <div class="user-hero-list-content">
+        <div class="user-hero-list-content" *ngIf="heroes">
           <app-hero-card
             [page]="cardClass"
             [atUserPage]="true"
@@ -33,7 +33,7 @@
             [disableSelectBtn]="''"
             [getReady]="true"
             (updateCardEvent)="this.updateList()"
-            *ngFor="let hero of heroes; index as i" [hero] = heroes[i]
+            *ngFor="let hero of heroes; index as i" [hero] = hero
           ></app-hero-card>
         </div>
         <div class="user-hero-list-paginator">

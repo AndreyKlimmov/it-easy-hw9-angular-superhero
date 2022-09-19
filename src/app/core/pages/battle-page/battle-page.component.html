@@ -1,2 +1,76 @@
 <app-home-heder></app-home-heder>
-<p>battle-page works!</p>
+<div class="battle">
+  <div class="battle-container">
+    <div class="battle-container-hero">
+      <app-hero-card *ngIf="hero"
+        [page]="cardClass"
+        [disableViewBtn]="'hideBtn'"
+        [disableSelectBtn]="'hideBtn'"
+        [getReady]="true"
+        (updateCardEvent)="this.updateList()"
+        [hero] = hero
+      ></app-hero-card>
+      <div class="battle-container-hero-search" [ngClass]="showOpponent">
+        <div class=""><span>searching for an<br><br> opponent...</span></div>
+        <div class="battle-container-hero-search-spinner">
+          <mat-progress-spinner
+            class="example-margin"
+            [color]="'primary'"
+            [mode]="'indeterminate'">
+          </mat-progress-spinner>
+        </div>
+        <app-button-header
+          class="battle-container-hero-search-btn"
+          [buttonText]="'STOP'"
+          [buttonClass]="'battle-search-btn'"
+          (click)="stopSearch()"
+        ></app-button-header>
+      </div>
+      <div class="battle-container-hero-opponent" [ngClass]="showOpponent">
+        <div class="battle-container-hero-opponent-card" [ngClass]="showOpponentCard">
+          <app-hero-card *ngIf="opponent"
+
+            [page]="cardClass"
+            [disableViewBtn]="'hideBtn'"
+            [disableSelectBtn]="'hideBtn'"
+            [hero] = opponent
+          ></app-hero-card>
+        </div>
+      </div>
+    </div>
+    <button class="battle-container-btn" *ngIf="hero"
+              [ngClass]="hideBattleHeroBtn"
+              (click)="findOpponent()"
+      >Find Opponent
+      </button>
+    <div class="battle-container-bonuses" [ngClass]="hideBattleHeroBtn">
+          <div class="user-bonuses-intelligence">
+            <img src="./../../../../assets/img/powerUps/cloak.jpg" alt="bonus-intelligence">
+            <h3>intelligence +10<br><br>left: <strong>{{bonuses.intelligence}}</strong></h3>
+          </div>
+          <div class="user-bonuses-strength">
+            <img src="./../../../../assets/img/powerUps/ring.jpg" alt="bonus-strength">
+            <h3>strength +10<br><br>left: <strong>{{bonuses.strength}}</strong></h3>
+          </div>
+          <div class="user-bonuses-speed">
+            <img src="./../../../../assets/img/powerUps/boots.jpg" alt="bonus-speed">
+            <h3>speed +10<br><br>left: <strong>{{bonuses.speed}}</strong></h3>
+          </div>
+          <div class="user-bonuses-durability">
+            <img src="./../../../../assets/img/powerUps/shield.jpg" alt="bonus-durability">
+            <h3>durability +10<br><br>left: <strong>{{bonuses.durability}}</strong></h3>
+          </div>
+          <div class="user-bonuses-power">
+            <img src="./../../../../assets/img/powerUps/mjolnir.jpg" alt="bonus-power">
+            <h3>power +10<br><br>left: <strong>{{bonuses.power}}</strong></h3>
+          </div>
+          <div class="user-bonuses-combat">
+            <img src="./../../../../assets/img/powerUps/ironman.jpg" alt="bonus-combat">
+            <h3>combat +10<br><br>left: <strong>{{bonuses.combat}}</strong></h3>
+          </div>
+        </div>
+  </div>
+
+
+
+</div>
