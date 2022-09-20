@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {HeroesService} from "../../services/heroes.service";
-import {interval, timeout} from "rxjs";
+import {concatMap, delay, fromEvent, interval, map, switchMap, take, takeUntil, timer} from "rxjs";
 
 @Component({
   selector: 'app-battle-page',
@@ -10,8 +10,8 @@ import {interval, timeout} from "rxjs";
 })
 export class BattlePageComponent implements OnInit {
   public cardClass: string = 'user-page-hero-list-'
-  public hideBattleHeroBtn: string = '';
-  public showOpponent: string = 'disabled-opponent';
+  public searchOpponentBtn: string = '';
+  public showOpponent: string = 'disabled';
   public showOpponentCard: string = '';
   public bonuses: any = {intelligence: 5, strength: 5, speed: 5, durability: 5, power: 5, combat: 5};
   public user: any;
@@ -20,7 +20,14 @@ export class BattlePageComponent implements OnInit {
   public timerSpinner: any;
   public test1: number = 0
   public test2: number = 0
-  public test3: any
+  public getHeroById: any
+  public searchText: string = '';
+  public resultText: string = 'disabled';
+  public fightSwordsImg: string = 'disabled';
+  public stopSearchBtn: string = '';
+  public spinnerImg: string = '';
+  public fightResultText: string = '';
+  public colorText: string = '';
 
   constructor(
     private router: Router,
@@ -59,30 +66,68 @@ export class BattlePageComponent implements OnInit {
   }
 
   public findOpponent(): void {
-    this.hideBattleHeroBtn = 'hidden-battle-hero-btn'
+    //this.searchOpponentBtn = 'disabled'
     this.showOpponent = ''
-    this.showOpponentCard = 'hidden-opponent'
-    if (Math.floor(Math.random() * 733)) {
-      this.test3 = this.heroesService.getHeroById(`${Math.floor(Math.random() * 733)}`).subscribe((hero: any) => {this.opponent = hero;
-        this.timerSpinner.unsubscribe()
+    this.showOpponentCard = 'hidden'
+    this.searchOpponentBtn = 'inactive'
 
+    if (Math.floor(Math.random() * 733)) {
+      this.getHeroById = this.heroesService.getHeroById(`${Math.floor(Math.random() * 733)}`)
+        .subscribe((hero: any) => {this.opponent = hero;
         console.log('opponent', this.test1++);})
     } else {
       this.findOpponent()
     }
-    this.timerSpinner = interval(3000).subscribe(n => {
-      this.showOpponentCard = '';
-      console.log('stop', this.test2++)
-    });
-    //TIMER
 
+    this.timerSpinner = timer(1000,1000);
+    this.timerSpinner.pipe(take(6)).subscribe((count: number) =>
+      {
+        if (count == 5) {
+          this.showOpponentCard = '';
+          this.searchText = 'disabled'
+          this.fightSwordsImg = ''
+          this.stopSearchBtn = 'hidden'
+          console.log('first');
+        }
+      });
+    this.timerSpinner.pipe(take(12)).subscribe((count: number) => {
+      if (count == 11) {
+        this.fightSwordsImg = 'disabled'
+        this.spinnerImg = 'disabled'
+        this.resultText = ''
+        this.fightResultText = 'WIN'
+        this.colorText = 'green'
+        console.log('second');
+      }
+    });
+    this.timerSpinner.pipe(take(18)).subscribe((count: number) => {
+      if (count == 17) {
+        this.searchOpponentBtn = ''
+
+
+
+        this.cardClass = 'user-page-hero-list-'
+        this.searchOpponentBtn = '';
+        this.showOpponent = 'disabled';
+        this.showOpponentCard = '';
+        this.searchText = '';
+        this.resultText = 'disabled';
+        this.fightSwordsImg = 'disabled';
+        this.stopSearchBtn = '';
+        this.spinnerImg = '';
+        this.fightResultText = '';
+        this.colorText = '';
+        console.log('third');
+      }
+    });
   }
 
   public stopSearch(): void {
-    this.hideBattleHeroBtn = ''
+    //this.searchOpponentBtn = ''
     this.timerSpinner.unsubscribe()
-    this.test3.unsubscribe()
-    this.showOpponent = 'disabled-opponent'
+    this.getHeroById.unsubscribe()
+    this.showOpponent = 'disabled'
 
+    this.searchOpponentBtn = ''
   }
 }

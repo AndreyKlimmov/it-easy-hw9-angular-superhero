@@ -1,24 +1,24 @@
 .battle {
-  border: 1px solid;
+  //border: 1px solid;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 
   &-container {
-    border: 1px solid;
+    //border: 1px solid;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     width: 100%;
 
     &-hero {
-      border: 1px solid;
+      //border: 1px solid;
       display: flex;
       //flex-wrap: wrap;
       justify-content: center;
 
       &-search {
-        border: 1px solid;
+        //border: 1px solid;
         width: 360px;
         //zoom: .8;
         display: flex;
@@ -26,27 +26,36 @@
         justify-content: center;
 
         & span {
-          font-size: 24px;
+          font-size: 20px;
           font-weight: 400;
         }
+
         & div {
           //border: 1px solid;
           margin: 32px auto;
           width: 80%;
           text-align: center;
         }
+
+        & img {
+          width: 40%;
+          margin: 0 auto 40px auto;
+        }
+
         &-spinner {
           display: flex;
           justify-content: center;
+          zoom: .4;
+
         }
         &-btn {
-          margin: 0 auto;
+          margin: 40px auto 0 auto;
           //background: yellow;
         }
       }
 
       &-opponent {
-        border: 1px solid;
+        //border: 1px solid;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -102,16 +111,25 @@
 }
 
 
-
-.hidden-battle-hero-btn {
+.disabled {
   display: none;
 }
 
-.disabled-opponent {
-  display: none;
-}
-
-.hidden-opponent {
+.hidden {
   visibility: hidden;
-  background: red;
+}
+
+.inactive {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
 }
