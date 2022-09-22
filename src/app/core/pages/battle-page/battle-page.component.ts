@@ -17,7 +17,9 @@ export class BattlePageComponent implements OnInit {
   public user: any;
   public hero: any;
   public opponent: any;
-  public timerSpinner: any;
+  public timerSpinnerSearch: any;
+  public timerSpinnerFight: any;
+  public timerResult: any;
   public test1: number = 0
   public test2: number = 0
   public getHeroById: any
@@ -28,6 +30,7 @@ export class BattlePageComponent implements OnInit {
   public spinnerImg: string = '';
   public fightResultText: string = '';
   public colorText: string = '';
+  public searchOpponentBonuses: string = '';
 
   constructor(
     private router: Router,
@@ -70,6 +73,7 @@ export class BattlePageComponent implements OnInit {
     this.showOpponent = ''
     this.showOpponentCard = 'hidden'
     this.searchOpponentBtn = 'inactive'
+    this.searchOpponentBonuses = 'disabled'
 
     if (Math.floor(Math.random() * 733)) {
       this.getHeroById = this.heroesService.getHeroById(`${Math.floor(Math.random() * 733)}`)
@@ -79,8 +83,8 @@ export class BattlePageComponent implements OnInit {
       this.findOpponent()
     }
 
-    this.timerSpinner = timer(1000,1000);
-    this.timerSpinner.pipe(take(6)).subscribe((count: number) =>
+    const timerFight = timer(1000,1000);
+    this.timerSpinnerSearch = timerFight.pipe(take(6)).subscribe((count: number) =>
       {
         if (count == 5) {
           this.showOpponentCard = '';
@@ -90,7 +94,7 @@ export class BattlePageComponent implements OnInit {
           console.log('first');
         }
       });
-    this.timerSpinner.pipe(take(12)).subscribe((count: number) => {
+    this.timerSpinnerFight = timerFight.pipe(take(12)).subscribe((count: number) => {
       if (count == 11) {
         this.fightSwordsImg = 'disabled'
         this.spinnerImg = 'disabled'
@@ -100,12 +104,12 @@ export class BattlePageComponent implements OnInit {
         console.log('second');
       }
     });
-    this.timerSpinner.pipe(take(18)).subscribe((count: number) => {
+    this.timerResult = timerFight.pipe(take(18)).subscribe((count: number) => {
       if (count == 17) {
         this.searchOpponentBtn = ''
 
 
-
+        this.searchOpponentBonuses = ''
         this.cardClass = 'user-page-hero-list-'
         this.searchOpponentBtn = '';
         this.showOpponent = 'disabled';
@@ -124,9 +128,12 @@ export class BattlePageComponent implements OnInit {
 
   public stopSearch(): void {
     //this.searchOpponentBtn = ''
-    this.timerSpinner.unsubscribe()
+    this.timerSpinnerSearch.unsubscribe()
+    this.timerSpinnerFight.unsubscribe()
+    this.timerResult.unsubscribe()
     this.getHeroById.unsubscribe()
     this.showOpponent = 'disabled'
+    this.searchOpponentBonuses = ''
 
     this.searchOpponentBtn = ''
   }

@@ -2,14 +2,16 @@
 <div class="battle">
   <div class="battle-container">
     <div class="battle-container-hero">
-      <app-hero-card *ngIf="hero"
-        [page]="cardClass"
-        [disableViewBtn]="'hideBtn'"
-        [disableSelectBtn]="'hideBtn'"
-        [getReady]="true"
-        (updateCardEvent)="this.updateList()"
-        [hero] = hero
-      ></app-hero-card>
+      <div class="battle-container-hero-card">
+        <app-hero-card *ngIf="hero"
+          [page]="cardClass"
+          [disableViewBtn]="'hideBtn'"
+          [disableSelectBtn]="'hideBtn'"
+          [getReady]="true"
+          (updateCardEvent)="this.updateList()"
+          [hero] = hero
+        ></app-hero-card>
+      </div>
       <div class="battle-container-hero-search" [ngClass]="showOpponent">
         <div [ngClass]="searchText"><span>searching for an<br><br> opponent...</span></div>
         <div [ngClass]="resultText" [class]="colorText"><span>{{fightResultText}}</span></div>
@@ -45,7 +47,7 @@
               (click)="findOpponent()"
       >Find Opponent
       </button>
-    <div class="battle-container-bonuses">
+    <div class="battle-container-bonuses" [ngClass]="searchOpponentBonuses">
           <div class="user-bonuses-intelligence">
             <img src="./../../../../assets/img/powerUps/cloak.jpg" alt="bonus-intelligence">
             <h3>intelligence +10<br><br>left: <strong>{{bonuses.intelligence}}</strong></h3>

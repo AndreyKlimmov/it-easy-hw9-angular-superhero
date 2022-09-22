@@ -41,12 +41,19 @@ export class HeroCardComponent implements OnInit {
       this.heroList = JSON.parse(localStorage.getItem(`userId-${this.user.id}-heroList`) || '')
       const hero = this.heroList.find(
         (heroId: any) => heroId === this.hero.id);
-      if (hero && !this.atUserPage) {this.disableSelectBtn = 'selectedHero'}
+      if (hero && !this.atUserPage) {
+        this.disableSelectBtn == 'hideBtn' ? this.disableSelectBtn = 'hideBtn' : this.disableSelectBtn = 'selectedHero'
+      }
     }
     if (localStorage.getItem(`userId-${this.user.id}-heroFight`) && this.getReady) {
       this.heroReadyId = JSON.parse(localStorage.getItem(`userId-${this.user.id}-heroFight`) || '')
-      if (this.heroReadyId == this.hero.id) {this.disableSelectBtn = 'readyHero'; this.select = 'Ready'}
-      else {this.disableSelectBtn = ''; this.select = 'Get Ready'}
+      if (this.heroReadyId == this.hero.id) {
+        this.disableSelectBtn == 'hideBtn' ? this.disableSelectBtn = 'hideBtn' : this.disableSelectBtn = 'readyHero';
+        this.select = 'Ready'
+      }
+      else {
+        this.disableSelectBtn == 'hideBtn' ? this.disableSelectBtn = 'hideBtn' : this.disableSelectBtn = '';
+        this.select = 'Get Ready'}
     }
 
 

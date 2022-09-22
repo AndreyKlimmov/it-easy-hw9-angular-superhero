@@ -17,9 +17,15 @@
       //flex-wrap: wrap;
       justify-content: center;
 
+      &-card {
+        width: 360px;
+        width: 30%;
+      }
+
       &-search {
         //border: 1px solid;
         width: 360px;
+        width: 30%;
         //zoom: .8;
         display: flex;
         flex-direction: column;
@@ -59,9 +65,13 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        width: 360px;
+        width: 30%;
 
         &-card {
           margin: 0 auto;
+          width: 100%;
+
         }
       }
     }
@@ -120,6 +130,7 @@
 }
 
 .inactive {
+  border: none;
   pointer-events: none;
   cursor: not-allowed;
   opacity: 0.65;
