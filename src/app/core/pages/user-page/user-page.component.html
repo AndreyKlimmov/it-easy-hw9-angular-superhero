@@ -1,4 +1,4 @@
-<div class="user">
+<div class="user" *ngIf="allowedShowPage">
   <app-home-heder></app-home-heder>
 <!--  <div class="user-header">-->
 <!--    <img (click)="navToPage('home')" src="assets/img/logo-hero.svg" alt="logo" class="user-header__img">-->
@@ -53,27 +53,27 @@
       <div class="user-bonuses">
         <div class="user-bonuses-intelligence">
           <img src="./../../../../assets/img/powerUps/cloak.jpg" alt="bonus-intelligence">
-          <h3>Dr. Strange's cloak<br>intelligence +10<br>left: <strong>{{intelligence}}</strong></h3>
+          <h3>Dr. Strange's cloak<br>intelligence +10<br>left: <strong>{{bonuses.intelligence}}</strong></h3>
         </div>
         <div class="user-bonuses-strength">
           <img src="./../../../../assets/img/powerUps/ring.jpg" alt="bonus-strength">
-          <h3>Green lantern's ring<br>strength +10<br>left: <strong>{{strength}}</strong></h3>
+          <h3>Green lantern's ring<br>strength +10<br>left: <strong>{{bonuses.strength}}</strong></h3>
         </div>
         <div class="user-bonuses-speed">
           <img src="./../../../../assets/img/powerUps/boots.jpg" alt="bonus-speed">
-          <h3>Flash boots<br>speed +10<br>left: <strong>{{speed}}</strong></h3>
+          <h3>Flash boots<br>speed +10<br>left: <strong>{{bonuses.speed}}</strong></h3>
         </div>
         <div class="user-bonuses-durability">
           <img src="./../../../../assets/img/powerUps/shield.jpg" alt="bonus-durability">
-          <h3>Captain America shield<br>durability +10<br>left: <strong>{{durability}}</strong></h3>
+          <h3>Captain America shield<br>durability +10<br>left: <strong>{{bonuses.durability}}</strong></h3>
         </div>
         <div class="user-bonuses-power">
           <img src="./../../../../assets/img/powerUps/mjolnir.jpg" alt="bonus-power">
-          <h3>Mjolnir<br>power +10<br>left: <strong>{{power}}</strong></h3>
+          <h3>Mjolnir<br>power +10<br>left: <strong>{{bonuses.power}}</strong></h3>
         </div>
         <div class="user-bonuses-combat">
           <img src="./../../../../assets/img/powerUps/ironman.jpg" alt="bonus-combat">
-          <h3>Ironman nano armor<br>combat +10<br>left: <strong>{{combat}}</strong></h3>
+          <h3>Ironman nano armor<br>combat +10<br>left: <strong>{{bonuses.combat}}</strong></h3>
         </div>
       </div>
     </mat-tab>

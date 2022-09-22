@@ -9,6 +9,7 @@ import {switchMap} from "rxjs";
   styleUrls: ['./hero-details-page.component.scss']
 })
 export class HeroDetailsPageComponent implements OnInit {
+  public allowedShowPage: boolean = false;
   public authUser: any = {'name': 'Log in'};
   public hero: any;
   public details!: any[];
@@ -27,7 +28,7 @@ export class HeroDetailsPageComponent implements OnInit {
   private initializeForm(): void {
     if (!localStorage.getItem('session')) {
       this.router.navigate(['/login'])
-    }
+    } else {this.allowedShowPage = true}
     this.activatedRoute.params.pipe(
       switchMap((gotHero) =>
           this.heroesService.getHeroById(gotHero.id)

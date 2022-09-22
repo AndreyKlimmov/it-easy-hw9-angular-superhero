@@ -10,6 +10,7 @@ import {HeroesResponseInterfaces} from "../../interfaces/http-interfaces";
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
+  public allowedShowPage: boolean = false;
   public authUser: any = {'name': 'Log in'};
   public alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
   public searchControl!: FormControl;
@@ -28,16 +29,17 @@ export class HomePageComponent implements OnInit {
     // this.getHeroes()
   }
   private initializeForm(): void {
-    this.searchControl = new FormControl<any>('', [])
     if (!localStorage.getItem('session')) {
       this.router.navigate(['/login'])
-    }
+    } else {this.allowedShowPage = true}
+    this.searchControl = new FormControl<any>('', [])
   }
   // private getHeroes(): void {
   //    this.heroesService.getHeroes().subscribe(
   //      (data: HeroesResponseInterfaces) => {
   //        this.heroes = data.results})
   // }
+
 
   public navToPage(pagePath: any): void {
     this.router.navigate(['/' + pagePath])

@@ -1,9 +1,10 @@
-<app-home-heder></app-home-heder>
-<div class="battle">
-  <div class="battle-container">
+<app-home-heder *ngIf="allowedShowPage"></app-home-heder>
+<div class="battle" *ngIf="allowedShowPage">
+  <h3  *ngIf="showText">Please, get ready your hero!</h3>
+  <div class="battle-container" *ngIf="hero">
     <div class="battle-container-hero">
       <div class="battle-container-hero-card">
-        <app-hero-card *ngIf="hero"
+        <app-hero-card
           [page]="cardClass"
           [disableViewBtn]="'hideBtn'"
           [disableSelectBtn]="'hideBtn'"
@@ -42,39 +43,36 @@
         </div>
       </div>
     </div>
-    <button class="battle-container-btn" *ngIf="hero"
+    <button class="battle-container-btn"
               [ngClass]="searchOpponentBtn"
               (click)="findOpponent()"
       >Find Opponent
       </button>
     <div class="battle-container-bonuses" [ngClass]="searchOpponentBonuses">
-          <div class="user-bonuses-intelligence">
+          <div class="user-bonuses-intelligence" (click)="applyBonus('intelligence')">
             <img src="./../../../../assets/img/powerUps/cloak.jpg" alt="bonus-intelligence">
             <h3>intelligence +10<br><br>left: <strong>{{bonuses.intelligence}}</strong></h3>
           </div>
-          <div class="user-bonuses-strength">
+          <div class="user-bonuses-strength" (click)="applyBonus('strength')">
             <img src="./../../../../assets/img/powerUps/ring.jpg" alt="bonus-strength">
             <h3>strength +10<br><br>left: <strong>{{bonuses.strength}}</strong></h3>
           </div>
-          <div class="user-bonuses-speed">
+          <div class="user-bonuses-speed" (click)="applyBonus('speed')">
             <img src="./../../../../assets/img/powerUps/boots.jpg" alt="bonus-speed">
             <h3>speed +10<br><br>left: <strong>{{bonuses.speed}}</strong></h3>
           </div>
-          <div class="user-bonuses-durability">
+          <div class="user-bonuses-durability" (click)="applyBonus('durability')">
             <img src="./../../../../assets/img/powerUps/shield.jpg" alt="bonus-durability">
             <h3>durability +10<br><br>left: <strong>{{bonuses.durability}}</strong></h3>
           </div>
-          <div class="user-bonuses-power">
+          <div class="user-bonuses-power" (click)="applyBonus('power')">
             <img src="./../../../../assets/img/powerUps/mjolnir.jpg" alt="bonus-power">
             <h3>power +10<br><br>left: <strong>{{bonuses.power}}</strong></h3>
           </div>
-          <div class="user-bonuses-combat">
+          <div class="user-bonuses-combat" (click)="applyBonus('combat')">
             <img src="./../../../../assets/img/powerUps/ironman.jpg" alt="bonus-combat">
             <h3>combat +10<br><br>left: <strong>{{bonuses.combat}}</strong></h3>
           </div>
         </div>
   </div>
-
-
-
 </div>

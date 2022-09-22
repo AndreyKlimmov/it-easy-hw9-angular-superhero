@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {HeroesResponseInterfaces, HeroResponseInterfaces} from "../interfaces/http-interfaces";
 
 @Injectable({
@@ -8,6 +8,7 @@ import {HeroesResponseInterfaces, HeroResponseInterfaces} from "../interfaces/ht
 })
 
 export class HeroesService {
+  public readyId = new Subject()
 
   constructor(
     private httpClient: HttpClient

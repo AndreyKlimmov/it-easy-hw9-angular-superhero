@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {HeroesService} from "../../services/heroes.service";
-import {concatMap, delay, fromEvent, interval, map, switchMap, take, takeUntil, timer} from "rxjs";
+import {take, timer} from "rxjs";
 
 @Component({
   selector: 'app-battle-page',
@@ -9,6 +9,8 @@ import {concatMap, delay, fromEvent, interval, map, switchMap, take, takeUntil, 
   styleUrls: ['./battle-page.component.scss']
 })
 export class BattlePageComponent implements OnInit {
+  public allowedShowPage: boolean = false;
+  public showText: boolean = false;
   public cardClass: string = 'user-page-hero-list-'
   public searchOpponentBtn: string = '';
   public showOpponent: string = 'disabled';
@@ -31,6 +33,9 @@ export class BattlePageComponent implements OnInit {
   public fightResultText: string = '';
   public colorText: string = '';
   public searchOpponentBonuses: string = '';
+  public heroReadyId: string = '';
+  public counter: number = 0;
+  public heroList: any[] = [0];
 
   constructor(
     private router: Router,
@@ -44,23 +49,30 @@ export class BattlePageComponent implements OnInit {
   public initialize():void {
     if (!localStorage.getItem('session')) {
       this.router.navigate(['/login'])
-    }
+    } else {this.allowedShowPage = true}
+
     if (localStorage.getItem('session')) {
       this.user = JSON.parse(localStorage.getItem('session') || '')
     }
-
-    if (localStorage.getItem(`userId-${this.user.id}-heroFight`)) {
-      const heroReadyId = JSON.parse(localStorage.getItem(`userId-${this.user.id}-heroFight`) || '')
-
-      this.heroesService.getHeroById(heroReadyId).subscribe((hero: any) => {this.hero = hero})
+    if (localStorage.getItem(`userId-${this.user.id}-heroList`) || '') {
+      this.heroList = JSON.parse(localStorage.getItem(`userId-${this.user.id}-heroList`) || '')
     }
+    if (localStorage.getItem(`userId-${this.user.id}-heroFight`)) {
+      this.heroReadyId = JSON.parse(localStorage.getItem(`userId-${this.user.id}-heroFight`) || '')
 
-    if (localStorage.getItem(`userId-${this.user.id}-bonuses`) || '') {
-      this.bonuses = JSON.parse(localStorage.getItem(`userId-${this.user.id}-bonuses`) || '')
-      //console.log('heroesId:', this.heroesId);
-      //this.searchHeroes()
-    } else {localStorage.setItem(`userId-${this.user.id}-bonuses`, JSON.stringify(this.bonuses))}
-    console.log('this.bonuses:', this.bonuses);
+      this.heroesService.getHeroById(this.heroReadyId).subscribe((hero: any) => {
+        this.hero = hero;
+      })
+      this.updateBonuses()
+    } else {this.showText = true}
+
+    // if (localStorage.getItem(`userId-${this.user.id}-bonuses`) || '') {
+    //   this.bonuses = JSON.parse(localStorage.getItem(`userId-${this.user.id}-bonuses`) || '')
+    //   //console.log('heroesId:', this.heroesId);
+    //   //this.searchHeroes()
+    // } else {localStorage.setItem(`userId-${this.user.id}-bonuses`, JSON.stringify(this.bonuses))}
+    // console.log('this.bonuses:', this.bonuses);
+
   }
 
 
@@ -136,5 +148,60 @@ export class BattlePageComponent implements OnInit {
     this.searchOpponentBonuses = ''
 
     this.searchOpponentBtn = ''
+  }
+
+  public applyBonus(bonus: string): void {
+    this.counter++
+    if (this.counter < 2) {
+      switch (bonus) {
+        case 'intelligence': {
+          this.setBonus('intelligence')
+          break
+        }
+        case 'strength': {
+          this.setBonus('strength')
+          break
+        }
+        case 'speed': {
+          this.setBonus('speed')
+          break
+        }
+        case 'durability': {
+          this.setBonus('durability')
+          break
+        }
+        case 'power': {
+          this.setBonus('power')
+          break
+        }
+        case 'combat': {
+          this.setBonus('combat')
+          break
+        }
+        default: {
+          console.log('somthing wrong in switch case');
+          break
+        }
+      }
+      localStorage.setItem(`userId-${this.user.id}-heroList`, JSON.stringify(this.heroList))
+    }
+
+  }
+
+  public setBonus(bonus: string): void {
+    const heroList = this.heroList.map((hero) => (
+      hero.id == this.hero.id ?
+      hero.bonuses[bonus]-- :  null
+    ));
+    this.updateBonuses()
+    //console.log('this.heroList', this.heroList);
+  }
+
+  public updateBonuses(): void {
+    const heroList = this.heroList.map((hero) => (
+      hero.id === this.heroReadyId
+        ? this.bonuses = hero.bonuses
+        : hero
+    ));
   }
 }
