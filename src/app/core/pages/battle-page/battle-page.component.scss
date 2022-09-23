@@ -4,6 +4,31 @@
   flex-direction: row;
   justify-content: space-around;
 
+  &-btn {
+    border: none;
+    border-radius: 12px;
+    background-color: rgb(255, 87, 51);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    padding: 12px 15px 8px 15px;
+    margin: 0px auto 20px auto;
+    cursor: pointer;
+
+    &__plus {
+      font-size: 36px;
+      font-weight: 1000;
+      line-height: 36px;
+      vertical-align: middle;
+    }
+    &__text {
+      font-size: 24px;
+      font-weight: 600;
+      //line-height: 36px;
+      vertical-align: middle;
+    }
+  }
+
   &-container {
     //border: 1px solid;
     display: flex;

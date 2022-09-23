@@ -1,7 +1,14 @@
 <app-home-heder *ngIf="allowedShowPage"></app-home-heder>
 <div class="battle" *ngIf="allowedShowPage">
-  <h3  *ngIf="showText">Please, get ready your hero!</h3>
-  <div class="battle-container" *ngIf="hero">
+  <button
+    *ngIf="showText"
+    class="battle-btn"
+    (click)="navToPage('user')"
+  >
+<!--    <div class="battle-btn__plus">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>-->
+    <div class="battle-btn__text">GET READY YOUR HERO</div>
+  </button>
+  <div class="battle-container" *ngIf="heroDiv">
     <div class="battle-container-hero">
       <div class="battle-container-hero-card">
         <app-hero-card
