@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import { TableComponent } from './table.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
@@ -17,6 +17,7 @@ import {MatSortModule} from "@angular/material/sort";
     CommonModule,
     MatTableModule,
     MatSortModule
-  ]
+  ],
+  providers: [DatePipe]
 })
 export class TableModule { }

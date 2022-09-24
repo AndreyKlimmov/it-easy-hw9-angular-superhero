@@ -21,29 +21,29 @@
     </div>
     <img class="hero-card-image" [src]="hero.image.url" alt="image">
     <div class="hero-card-powerstats">
-      <div class="hero-card-powerstats-item">
+      <div class="hero-card-powerstats-item" [class]="intelligence">
         <img class="hero-card__intelligence" src="assets/img/intelligence.svg" alt="intelligence">
-        <span>&nbsp;{{hero.powerstats.intelligence}}</span>
+        <span>&nbsp;{{intelligenceStat}}</span>
       </div>
-      <div class="hero-card-powerstats-item">
+      <div class="hero-card-powerstats-item" [class]="strength">
         <img class="hero-card__strength" src="assets/img/strength.svg" alt="strength">
-        <span>&nbsp;{{hero.powerstats.strength}}</span>
+        <span>&nbsp;{{strengthStat}}</span>
       </div>
-      <div class="hero-card-powerstats-item">
+      <div class="hero-card-powerstats-item" [class]="speed">
         <img class="hero-card__speed" src="assets/img/speed.svg" alt="speed">
-        <span>&nbsp;{{hero.powerstats.speed}}</span>
+        <span>&nbsp;{{speedStat}}</span>
       </div>
-      <div class="hero-card-powerstats-item">
+      <div class="hero-card-powerstats-item"[class]="durability">
         <img class="hero-card__durability" src="assets/img/durability.svg" alt="durability">
-        <span>&nbsp;{{hero.powerstats.durability}}</span>
+        <span>&nbsp;{{durabilityStat}}</span>
       </div>
-      <div class="hero-card-powerstats-item">
+      <div class="hero-card-powerstats-item"[class]="power">
         <img class="hero-card__power" src="assets/img/power.svg" alt="power">
-        <span>&nbsp;{{hero.powerstats.power}}</span>
+        <span>&nbsp;{{powerStat}}</span>
 
-      </div>  <div class="hero-card-powerstats-item">
+      </div>  <div class="hero-card-powerstats-item"[class]="combat">
       <img class="hero-card__combat" src="assets/img/combat.svg" alt="combat">
-      <span>&nbsp;{{hero.powerstats.combat}}</span>
+      <span>&nbsp;{{combatStat}}</span>
     </div>   </div>
 
   </div>

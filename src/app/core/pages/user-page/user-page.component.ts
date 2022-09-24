@@ -14,7 +14,7 @@ export class UserPageComponent implements OnInit {
   public heroesId: any[] = [];
   public heroesIdnew: any[] = [];
   public heroes: any[] = [];
-  public heroesShow: any[] = [];
+  public history: any[] = [];
   public cardClass: string = 'user-page-hero-list-'
   public heroReadyId: string = '';
   public pageIndex: number = 0;
@@ -45,10 +45,15 @@ export class UserPageComponent implements OnInit {
     if (localStorage.getItem('session')) {
       this.user = JSON.parse(localStorage.getItem('session') || '')
     }
+
     if (localStorage.getItem(`userId-${this.user.id}-heroList`) || '') {
       this.heroesId = JSON.parse(localStorage.getItem(`userId-${this.user.id}-heroList`) || '')
       //console.log('heroesId:', this.heroesId);
       this.searchHeroes()
+    }
+
+    if (localStorage.getItem(`userId-${this.user.id}-history`) || '') {
+      this.history = JSON.parse(localStorage.getItem(`userId-${this.user.id}-history`) || '')
     }
     // if (localStorage.getItem(`userId-${this.user.id}-heroFight`)) {
     //   const heroReadyId = JSON.parse(localStorage.getItem(`userId-${this.user.id}-heroFight`) || '')

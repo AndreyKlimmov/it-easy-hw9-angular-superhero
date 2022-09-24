@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {LiveAnnouncer} from "@angular/cdk/a11y";
 import {MatSort, Sort} from "@angular/material/sort";
@@ -6,16 +6,14 @@ import {formatDate} from "@angular/common";
 
 export interface PeriodicElement {
   date: string;
-  heroName: string;
-  opponentName: string;
-  battleResult: string;
+  hero: string;
+  opponent: string;
+  result: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {date: formatDate('2019-06-29T23:55:55', 'yyyy.MM.dd hh:mm:ss', 'en-US'), heroName: 'Hydrogen', opponentName: 'H', battleResult: 'WIN'},
-  {date: formatDate('2022-09-15', 'yyyy.MM.dd', 'en-US'), heroName: 'Super', opponentName: 'S', battleResult: 'LOOSE'},
-  //{date: date('2000'), heroName: 'Hydrogen', opponentName: 'H', battleResult: 'WIN'},
-
+  {date: formatDate('2000-00-01T00:00:00', 'yyyy.MM.dd hh:mm:ss', 'en-US'),
+    hero: 'no history yet', opponent: 'no history yet', result: 'no history yet'},
 ];
 
 @Component({
@@ -23,11 +21,18 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements AfterViewInit {
+export class TableComponent implements AfterViewInit, OnInit {
+  @Input() history: any[] = [];
   displayedColumns: string[] = ['date', 'hero-name', 'opponent-name', 'battle-result'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  constructor(private _liveAnnouncer: LiveAnnouncer) {}
+  constructor(
+    private _liveAnnouncer: LiveAnnouncer,
+  ) {}
+
+  ngOnInit(): void {
+    this.getTableArr()
+  }
 
 @ViewChild(MatSort) sort!: MatSort;
 
@@ -45,6 +50,15 @@ export class TableComponent implements AfterViewInit {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+
+  public getTableArr(): void {
+    if (this.history) {
+      for (const [i, v] of this.history.entries()) {
+        let a: any = v
+        ELEMENT_DATA[i] = a
+      }
     }
   }
 }

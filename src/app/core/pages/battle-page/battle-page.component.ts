@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {HeroesService} from "../../services/heroes.service";
-import {take, timer} from "rxjs";
+import {Observable, take, timer} from "rxjs";
 
 @Component({
   selector: 'app-battle-page',
@@ -16,7 +16,9 @@ export class BattlePageComponent implements OnInit {
   public showOpponent: string = 'disabled';
   public showOpponentCard: string = '';
   public bonuses: any = {intelligence: 5, strength: 5, speed: 5, durability: 5, power: 5, combat: 5};
-  public bonusesFlags: any = {intelligence: true, strength: true, speed: true, durability: true, power: true, combat: true};
+  public bonusesFlags: any = {
+    intelligence: true, strength: true, speed: true, durability: true, power: true, combat: true
+  };
   public bonusesSum: any = {intelligence: 0, strength: 0, speed: 0, durability: 0, power: 0, combat: 0};
   public user: any;
   public hero: any;
@@ -25,7 +27,7 @@ export class BattlePageComponent implements OnInit {
   public timerSpinnerSearch: any;
   public timerSpinnerFight: any;
   public timerResult: any;
-  public test1: number = 0
+  public trigger: boolean = false
   public test2: number = 0
   public getHeroById: any
   public searchText: string = '';
@@ -38,7 +40,8 @@ export class BattlePageComponent implements OnInit {
   public searchOpponentBonuses: string = '';
   public heroReadyId: string = '';
   public counterOpp: number = 0;
-  public heroList: any[] = [0];
+  public heroList: any[] = [];
+  public history: any[] = [];
 
   constructor(
     private router: Router,
@@ -59,6 +62,9 @@ export class BattlePageComponent implements OnInit {
     }
     if (localStorage.getItem(`userId-${this.user.id}-heroList`) || '') {
       this.heroList = JSON.parse(localStorage.getItem(`userId-${this.user.id}-heroList`) || '')
+    }
+    if (localStorage.getItem(`userId-${this.user.id}-history`) || '') {
+      this.history = JSON.parse(localStorage.getItem(`userId-${this.user.id}-history`) || '')
     }
     if (localStorage.getItem(`userId-${this.user.id}-heroFight`)) {
       this.heroReadyId = JSON.parse(localStorage.getItem(`userId-${this.user.id}-heroFight`) || '')
@@ -88,24 +94,27 @@ export class BattlePageComponent implements OnInit {
   }
 
   public findOpponent(): void {
+    let randomId: number
     this.counterOpp = 0
     //this.searchOpponentBtn = 'disabled'
     this.showOpponent = ''
     this.showOpponentCard = 'hidden'
     this.searchOpponentBtn = 'inactive'
     this.searchOpponentBonuses = 'disabled'
-
-    if (Math.floor(Math.random() * 733)) {
-      this.getHeroById = this.heroesService.getHeroById(`${Math.floor(Math.random() * 733)}`)
+    randomId = Math.floor(Math.random() * 733)
+    if (randomId && randomId !== +this.hero.id) {
+      //this.getHeroById = this.heroesService.getHeroById(`318`)
+      this.getHeroById = this.heroesService.getHeroById(`${randomId}`)
         .subscribe((hero: any) => {
           this.opponent = hero;
-          if (this.countOpponent() == NaN) {
+          if (!this.countOpponent()) {
             this.counterOpp = 0
           } else {
             this.counterOpp += this.countOpponent()
           }
-
-        console.log('opponent', this.test1++);})
+          //this.trigger = !this.trigger
+          //console.log('opponent', this.test1++)
+          ;})
     } else {
       this.findOpponent()
     }
@@ -118,7 +127,7 @@ export class BattlePageComponent implements OnInit {
           this.searchText = 'disabled'
           this.fightSwordsImg = ''
           this.stopSearchBtn = 'hidden'
-          console.log('first');
+          //console.log('first');
         }
       });
     this.timerSpinnerFight = timerFight.pipe(take(5)).subscribe((count: number) => {
@@ -128,14 +137,14 @@ export class BattlePageComponent implements OnInit {
         this.resultText = ''
         //this.fightResultText = 'WIN'
         //this.colorText = 'green'
-        console.log('second');
-        if (!this.counterOpp) {
-          this.fightResultText = 'Try again'
-          this.colorText = 'red'
-          this.unSetBonus()
-          this.resetSum()
-          this.setBonusesFlags(true)
-        } else {
+        //console.log('second');
+        // if (!this.counterOpp) {
+        //   this.fightResultText = 'Try again'
+        //   this.colorText = 'red'
+        //   this.unSetBonus()
+        //   this.resetSum()
+        //   this.setBonusesFlags(true)
+        // } else {
           if (this.countHero() >= this.counterOpp) {
             this.fightResultText = 'WIN'
             this.colorText = 'green'
@@ -143,6 +152,7 @@ export class BattlePageComponent implements OnInit {
             this.updateHeroBonuses()
             this.setBonusesFlags(true)
             this.resetSum()
+            this.setHistory()
             //localStorage.setItem(`userId-${this.user.id}-heroList`, JSON.stringify(this.heroList))
           } else {
             this.fightResultText = 'LOOSE'
@@ -150,7 +160,7 @@ export class BattlePageComponent implements OnInit {
             //this.setBonusesFlags(true)
             console.log('LOOSE');
           }
-        }
+        // }
 
 
       }
@@ -180,7 +190,8 @@ export class BattlePageComponent implements OnInit {
         this.spinnerImg = '';
         this.fightResultText = '';
         this.colorText = '';
-        console.log('third');
+        //console.log('third');
+        this.opponent = null
       }
     });
   }
@@ -241,8 +252,10 @@ export class BattlePageComponent implements OnInit {
             hero.bonuses[bonus]--
             this.bonusesSum[bonus] += 10
             this.bonusesFlags[bonus] = false
-            console.log('set this.bonuses', this.bonuses);
-            console.log('set this.bonusesSum', this.bonusesSum);
+            this.trigger = !this.trigger
+            //console.log('set this.bonusesFlags', this.bonusesFlags);
+            //console.log('set this.bonuses', this.bonuses);
+            //console.log('set this.bonusesSum', this.bonusesSum);
           }
         }
       }
@@ -256,15 +269,16 @@ export class BattlePageComponent implements OnInit {
      const heroList = this.heroList.map((hero) => {
         if (hero.id == this.hero.id) {
           for (let bonus in hero.bonuses) {
-            console.log('unset bonus', bonus);
+            //console.log('unset bonus', bonus);
             if (hero.bonuses[bonus] >= 0 && hero.bonuses[bonus] < 5 && this.bonusesFlags[bonus] == false) {
               hero.bonuses[bonus]++
               this.bonusesSum[bonus] -= 10
               this.bonusesFlags[bonus] = true
 
-              console.log('unset this.bonusesSum', this.bonusesSum);
+              //console.log('unset this.bonusesSum', this.bonusesSum);
             }
          }
+          this.trigger = !this.trigger
         }
      }
 
@@ -297,24 +311,30 @@ export class BattlePageComponent implements OnInit {
     this.bonusesFlags.durability = bool;
     this.bonusesFlags.power = bool;
     this.bonusesFlags.combat = bool;
+    this.trigger = !this.trigger
   }
 
   public countOpponent() {
     let sum = 0;
     for (let key in this.opponent.powerstats) {
-      if (this.opponent.powerstats[key] !== 'null') {
-        sum += +this.opponent.powerstats[key];
+      if (this.opponent.powerstats[key] == 'null' || !this.opponent.powerstats[key]) {
+        this.opponent.powerstats[key] = 0
       }
+      sum += +this.opponent.powerstats[key];
       //console.log('key', key);
       //console.log('this.opponent.powerstats[key]', this.opponent.powerstats[key]);
     }
     console.log('sumOpp', sum);
+    console.log('OppId', this.opponent.id);
     return sum;
   }
 
   public countHero() {
     let sum = 0;
     for (let key in this.hero.powerstats) {
+      if (this.hero.powerstats[key] == 'null' || !this.hero.powerstats[key]) {
+        this.hero.powerstats[key] = 0
+      }
       sum += +this.hero.powerstats[key];
     }
     console.log('sumHero', sum);
@@ -334,9 +354,17 @@ export class BattlePageComponent implements OnInit {
     }
   }
 
-
-
-
+  public setHistory(): void {
+    if (true) {
+      this.history.push({
+        'date': new Date(),
+        'hero': this.hero.name,
+        'opponent': this.opponent.name,
+        'result': this.fightResultText
+      })
+      localStorage.setItem(`userId-${this.user.id}-history`, JSON.stringify(this.history))
+    }
+  }
 
 
 }

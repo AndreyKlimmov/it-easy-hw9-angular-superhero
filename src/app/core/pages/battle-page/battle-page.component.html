@@ -6,18 +6,21 @@
     (click)="navToPage('user')"
   >
 <!--    <div class="battle-btn__plus">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>-->
-    <div class="battle-btn__text">GET READY YOUR HERO</div>
+    <div class="battle-btn__text">GET A HERO READY</div>
   </button>
   <div class="battle-container" *ngIf="heroDiv">
     <div class="battle-container-hero">
       <div class="battle-container-hero-card">
         <app-hero-card
+          [bonusesFlags]="bonusesFlags"
+          [trigger]="trigger"
           [page]="cardClass"
           [disableViewBtn]="'hideBtn'"
           [disableSelectBtn]="'hideBtn'"
           [getReady]="true"
           (updateCardEvent)="this.updateList()"
           [hero] = hero
+          [heroTrue] = true
         ></app-hero-card>
       </div>
       <div class="battle-container-hero-search" [ngClass]="showOpponent">
