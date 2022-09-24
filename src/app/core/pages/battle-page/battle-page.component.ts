@@ -28,7 +28,8 @@ export class BattlePageComponent implements OnInit {
   public timerSpinnerFight: any;
   public timerResult: any;
   public trigger: boolean = false
-  public test2: number = 0
+  public bonusDate: boolean = false
+  public bonusActivated!: Date
   public getHeroById: any
   public searchText: string = '';
   public resultText: string = 'disabled';
@@ -62,6 +63,7 @@ export class BattlePageComponent implements OnInit {
     }
     if (localStorage.getItem(`userId-${this.user.id}-heroList`) || '') {
       this.heroList = JSON.parse(localStorage.getItem(`userId-${this.user.id}-heroList`) || '')
+      this.calculateDiff()
     }
     if (localStorage.getItem(`userId-${this.user.id}-history`) || '') {
       this.history = JSON.parse(localStorage.getItem(`userId-${this.user.id}-history`) || '')
@@ -75,13 +77,6 @@ export class BattlePageComponent implements OnInit {
       })
       this.updateBonuses()
     } else {this.showText = true}
-
-    // if (localStorage.getItem(`userId-${this.user.id}-bonuses`) || '') {
-    //   this.bonuses = JSON.parse(localStorage.getItem(`userId-${this.user.id}-bonuses`) || '')
-    //   //console.log('heroesId:', this.heroesId);
-    //   //this.searchHeroes()
-    // } else {localStorage.setItem(`userId-${this.user.id}-bonuses`, JSON.stringify(this.bonuses))}
-    // console.log('this.bonuses:', this.bonuses);
 
   }
 
@@ -207,6 +202,7 @@ export class BattlePageComponent implements OnInit {
 
     this.searchOpponentBtn = ''
     this.unSetBonus()
+    this.bonusDate = false
   }
 
   public applyBonus(bonus: string): void {
@@ -246,13 +242,14 @@ export class BattlePageComponent implements OnInit {
   }
 
   public setBonus(bonus: string): void {
-    const heroList = this.heroList.map((hero) => {
+    this.heroList.map((hero) => {
         if (hero.id == this.hero.id) {
           if (hero.bonuses[bonus] > 0 && hero.bonuses[bonus] < 6 && this.bonusesFlags[bonus] == true) {
             hero.bonuses[bonus]--
             this.bonusesSum[bonus] += 10
             this.bonusesFlags[bonus] = false
             this.trigger = !this.trigger
+            this.bonusDate = true
             //console.log('set this.bonusesFlags', this.bonusesFlags);
             //console.log('set this.bonuses', this.bonuses);
             //console.log('set this.bonusesSum', this.bonusesSum);
@@ -288,7 +285,7 @@ export class BattlePageComponent implements OnInit {
   }
 
   public updateBonuses(): void {
-    const heroList = this.heroList.map((hero) => (
+    this.heroList.map((hero) => (
       hero.id === this.heroReadyId
         ? this.bonuses = hero.bonuses
         : hero
@@ -296,13 +293,38 @@ export class BattlePageComponent implements OnInit {
   }
 
   public updateHeroBonuses(): void {
-    const heroList = this.heroList.map((hero) => (
-      hero.id === this.heroReadyId
-        ? hero.bonuses = this.bonuses
-        : hero
-    ));
+    this.heroList.map((hero) => {
+        if (hero.id === this.heroReadyId) {
+          hero.bonuses = this.bonuses
+          this.bonusDate ? hero.bonusActivated = new Date() : null
+        }
+      }
+    );
     localStorage.setItem(`userId-${this.user.id}-heroList`, JSON.stringify(this.heroList))
+    this.bonusDate = false
   }
+
+  public calculateDiff() {
+    this.heroList.map((hero) => {
+      if (hero.bonusActivated) {
+        let date = hero.bonusActivated
+        if (calculateDiff(date) > 24) {
+          hero.bonuses = this.bonuses
+        }
+      }
+      }
+    );
+    localStorage.setItem(`userId-${this.user.id}-heroList`, JSON.stringify(this.heroList))
+    function calculateDiff(date: Date) {
+      var date1:any = new Date(date);
+      var date2:any = new Date();
+      var diffDays:any = (date2 - date1) / (1000 * 60 * 60);
+      console.log(diffDays);
+      return diffDays;
+    }
+  }
+
+
 
   public setBonusesFlags(bool: boolean): void {
     this.bonusesFlags.intelligence = bool;

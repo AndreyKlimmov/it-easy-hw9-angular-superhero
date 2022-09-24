@@ -151,7 +151,7 @@ export class HeroCardComponent implements OnInit, OnChanges {
 
   private initializeVar(): void {
 
-    this.getReady ? this.select = 'Get Ready' : this.select
+    this.getReady ? this.select = 'Field' : this.select
 
     if (localStorage.getItem('session')) {
       this.user = JSON.parse(localStorage.getItem('session') || '')
@@ -172,7 +172,7 @@ export class HeroCardComponent implements OnInit, OnChanges {
       }
       else {
         this.disableSelectBtn == 'hideBtn' ? this.disableSelectBtn = 'hideBtn' : this.disableSelectBtn = '';
-        this.select = 'Get Ready'}
+        this.select = 'Field'}
     }
 
 
