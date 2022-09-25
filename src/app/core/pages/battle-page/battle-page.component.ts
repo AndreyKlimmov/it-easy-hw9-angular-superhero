@@ -63,7 +63,7 @@ export class BattlePageComponent implements OnInit {
     }
     if (localStorage.getItem(`userId-${this.user.id}-heroList`) || '') {
       this.heroList = JSON.parse(localStorage.getItem(`userId-${this.user.id}-heroList`) || '')
-      this.calculateDiff()
+      this.calculateDateDiff()
     }
     if (localStorage.getItem(`userId-${this.user.id}-history`) || '') {
       this.history = JSON.parse(localStorage.getItem(`userId-${this.user.id}-history`) || '')
@@ -304,12 +304,15 @@ export class BattlePageComponent implements OnInit {
     this.bonusDate = false
   }
 
-  public calculateDiff() {
+  public calculateDateDiff() {
     this.heroList.map((hero) => {
       if (hero.bonusActivated) {
+        console.log(hero);
         let date = hero.bonusActivated
         if (calculateDiff(date) > 24) {
           hero.bonuses = this.bonuses
+          //console.log(calculateDiff(date));
+          //console.log(this.bonuses);
         }
       }
       }
@@ -319,7 +322,7 @@ export class BattlePageComponent implements OnInit {
       var date1:any = new Date(date);
       var date2:any = new Date();
       var diffDays:any = (date2 - date1) / (1000 * 60 * 60);
-      console.log(diffDays);
+      //console.log(date1, date2, diffDays);
       return diffDays;
     }
   }
