@@ -101,7 +101,7 @@ export class UserPageComponent implements OnInit {
             ? this.bonuses = hero.bonuses
             : hero
         ));
-        console.log('if not fight id: subscribe redy id')
+        //console.log('if not fight id: subscribe redy id')
       })
     }
     if (localStorage.getItem(`userId-${this.user.id}-heroFight`)) {
@@ -117,7 +117,7 @@ export class UserPageComponent implements OnInit {
             ? this.bonuses = hero.bonuses
             : hero
         ));
-        console.log('if fight id: subscribe redy id')
+        //console.log('if fight id: subscribe redy id')
       })
 
       //console.log('this.bonuses', this.bonuses);

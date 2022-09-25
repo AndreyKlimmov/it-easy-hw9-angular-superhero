@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/it-easy-hw9-angular-superhero",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

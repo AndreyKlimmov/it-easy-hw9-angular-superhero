@@ -60,7 +60,7 @@ export class LoginPageComponent implements OnInit {
       } else {this.noSuchUser = true}
 
       //const registeredUsers = JSON.parse(localStorage.getItem('users') || '');
-      console.log('registeredUsers:', registeredUsers);
+      //console.log('registeredUsers:', registeredUsers);
       //const authUsers = registeredUsers.find((user: any) => user.email === payLoad.email);
 
     }

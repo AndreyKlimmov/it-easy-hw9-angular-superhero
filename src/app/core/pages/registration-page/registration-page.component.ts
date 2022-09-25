@@ -53,7 +53,7 @@ export class RegistrationPageComponent implements OnInit {
         // password: this.passwordControl.value,
         // confirmPassword: this.confirmPasswordControl.value
       }
-      console.log('payLoad', payLoad);
+      //console.log('payLoad', payLoad);
       let registeredUsers: any = []
       if (localStorage.getItem('users')) {
         registeredUsers = JSON.parse(localStorage.getItem('users') || '')
@@ -72,7 +72,7 @@ export class RegistrationPageComponent implements OnInit {
           return this.router.navigate(['/login'])
         }
       }
-        console.log('registeredUsers', registeredUsers);
+        //console.log('registeredUsers', registeredUsers);
         registeredUsers.push(payLoad)
         localStorage.setItem('users', JSON.stringify(registeredUsers))
 

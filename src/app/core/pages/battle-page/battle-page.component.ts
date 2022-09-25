@@ -160,8 +160,8 @@ export class BattlePageComponent implements OnInit {
 
       }
     });
-    this.timerResult = timerFight.pipe(take(8)).subscribe((count: number) => {
-      if (count == 7) {
+    this.timerResult = timerFight.pipe(take(7)).subscribe((count: number) => {
+      if (count == 6) {
         this.searchOpponentBtn = ''
         if (localStorage.getItem(`userId-${this.user.id}-heroFight`) && this.fightResultText == 'LOOSE') {
           localStorage.removeItem(`userId-${this.user.id}-heroFight`)
@@ -307,7 +307,7 @@ export class BattlePageComponent implements OnInit {
   public calculateDateDiff() {
     this.heroList.map((hero) => {
       if (hero.bonusActivated) {
-        console.log(hero);
+        //console.log(hero);
         let date = hero.bonusActivated
         if (calculateDiff(date) > 24) {
           hero.bonuses = this.bonuses
